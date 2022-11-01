@@ -19,18 +19,30 @@ export const useChatService = () => {
             return { ...prevState, room: user.room, name: user.username };
         });
 
-        socket.emit("join", { user: user.username, room: user.room }, (error) => {
-            if (error) {
-                setChatState((prevState) => {
-                    return { ...prevState, flag: 1 };
-                });
-                alert(error);
+        socket.emit(
+            "join",
+            {
+                user: user.username,
+                partnerUsername: user.partnerUsername,
+                room: user.room,
+            },
+            (error) => {
+                if (error) {
+                    setChatState((prevState) => {
+                        return { ...prevState, flag: 1 };
+                    });
+                    alert(error);
+                }
             }
-        });
+        );
     };
 
     const sendMessageToSocket = (message) => {
-        socket.emit("message", { user: chatState.name, room: chatState.room, message: message });
+        socket.emit("message", {
+            user: chatState.name,
+            room: chatState.room,
+            message: message,
+        });
     };
 
     const exitChat = () => {
