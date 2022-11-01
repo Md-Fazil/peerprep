@@ -63,7 +63,7 @@ function HistoryPage() {
                                 <TableCell align="right">Topic</TableCell>
                                 <TableCell align="right">Difficulty</TableCell>
                                 <TableCell align="right">Last Attempt</TableCell>
-                                <TableCell align="right">More</TableCell>
+                                <TableCell align="right"></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

@@ -31,7 +31,7 @@ function HomePage() {
             </Button>
             <br></br>
             <Button variant={"outlined"} onClick={goToHistoryPage}>
-                History of questions
+                History of completed questions
             </Button>
         </Stack>
     );
