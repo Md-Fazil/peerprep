@@ -4,22 +4,16 @@ export const chatController = (io, socket) => {
     let userRoom;
     let isNotified = false;
 
-    socket.on("join", ({ user, room }) => {
+    socket.on("join", ({ user, partnerUsername, room }) => {
         userName = user;
         // Emit welcome message to the user who has just joined
         socket.emit("message", {
             user: "admin",
-            message: `${user}, welcome to the interview room.`,
+            message: `${user}, welcome to the interview room. You have been matched with ${partnerUsername}.`,
         });
 
         socket.join(room);
         userRoom = room;
-
-        // Emit to the others in the room that user has joined
-        socket.broadcast.to(room).emit("message", {
-            user: "admin",
-            message: `${user} has joined`,
-        });
     });
 
     socket.on("message", ({ user, room, message }) => {
