@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "../contexts/UserContext";
 import Chat from "../components/Chat";
-import { useChatService } from "../hooks/useChatService";
-import { getQuestion } from "../services/QuestionService";
-
 import Editor from "../components/Editor";
+import { useChatService } from "../hooks/useChatService";
+import { getQuestion, getQuestionByTopic } from "../services/QuestionService";
+
+let isLeaving = false;
 
 function CollaborationPage() {
     const { user, setUser } = useContext(UserContext);
@@ -23,7 +24,11 @@ function CollaborationPage() {
     }, []);
 
     async function fetchQuestion() {
-        await getQuestion(user.room, user.difficultyLevel).then((qn) => setQuestion(qn));
+        if (user.topic !== null) {
+            await getQuestionByTopic(user.room, user.topic).then((qn) => setQuestion(qn));
+        } else if (user.difficultyLevel !== null) {
+            await getQuestion(user.room, user.difficultyLevel).then((qn) => setQuestion(qn));
+        }
     }
 
     useEffect(() => {
@@ -36,6 +41,13 @@ function CollaborationPage() {
         console.log("question in collab:", question);
     }, []);
 
+    useEffect(() => {
+        localStorage.setItem("user", JSON.stringify(user));
+        if (isLeaving) {
+            navigate("/home");
+        }
+    }, [user]);
+
     const { exitChat } = useChatService();
 
     let navigate = useNavigate();
@@ -45,31 +57,23 @@ function CollaborationPage() {
             return {
                 ...prevState,
                 room: null,
+                difficultyLevel: null,
+                topic: null
             };
         });
-        setQuestion(null);
         localStorage.removeItem("question");
-        navigate("/home");
+        isLeaving = true;
     };
 
     return (
         user && (
             <Box padding="1%">
                 <Grid container justifyContent="flex-end">
-                    <Button
-                        variant="outlined"
-                        color="error"
-                        onClick={handleLeave}
-                    >
+                    <Button variant="outlined" color="error" onClick={handleLeave}>
                         Leave
                     </Button>
                 </Grid>
-                <Grid
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="stretch"
-                >
+                <Grid container direction="row" justifyContent="center" alignItems="stretch">
                     <Grid item={true} xs={4} padding="1%">
                         <Typography variant="h3">Question</Typography>
                         <h2>{question.title}</h2>
