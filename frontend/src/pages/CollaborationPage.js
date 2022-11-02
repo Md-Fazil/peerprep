@@ -3,11 +3,13 @@ import Snackbar from "@mui/material/Snackbar";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { STATUS_CODE_CREATED } from "../constants";
 import { UserContext } from "../contexts/UserContext";
 import Chat from "../components/Chat";
 import Editor from "../components/Editor";
 import { useChatService } from "../hooks/useChatService";
 import { getQuestion, getQuestionByTopic } from "../services/QuestionService";
+import { addQuestionToHistory } from "../services/HistoryService";
 
 let isLeaving = false;
 
@@ -15,6 +17,7 @@ function CollaborationPage() {
     const { user, setUser } = useContext(UserContext);
     const [question, setQuestion] = useState({});
     const [openToast, setOpenToast] = useState(true);
+    const [openAddQnToast, setOpenAddQnToast] = useState(false);
 
     useEffect(() => {
         if (!user) {
@@ -58,17 +61,28 @@ function CollaborationPage() {
                 ...prevState,
                 room: null,
                 difficultyLevel: null,
-                topic: null
+                topic: null,
             };
         });
         localStorage.removeItem("question");
         isLeaving = true;
     };
 
+    const handleMarkQn = async () => {
+        const res = await addQuestionToHistory(user.username, question);
+        if (res && res.status === STATUS_CODE_CREATED) {
+            setOpenAddQnToast(true);
+        }
+    };
+
     return (
         user && (
             <Box padding="1%">
                 <Grid container justifyContent="flex-end">
+                    <Button variant="outlined" color="success" onClick={handleMarkQn}>
+                        Mark Question as Done
+                    </Button>
+
                     <Button variant="outlined" color="error" onClick={handleLeave}>
                         Leave
                     </Button>
@@ -98,6 +112,13 @@ function CollaborationPage() {
                     autoHideDuration={3000}
                     message="Found a match!"
                     onClose={() => setOpenToast(false)}
+                />
+
+                <Snackbar
+                    open={openAddQnToast}
+                    autoHideDuration={3000}
+                    message="Marked question as done"
+                    onClose={() => setOpenAddQnToast(false)}
                 />
             </Box>
         )

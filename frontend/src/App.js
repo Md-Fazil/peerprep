@@ -15,6 +15,7 @@ import MatchingPage from "./pages/MatchingPage";
 import SelectDifficultyPage from "./pages/SelectDifficultyPage";
 import SelectTopicPage from "./pages/SelectTopicPage";
 import CollaborationPage from "./pages/CollaborationPage";
+import HistoryPage from "./pages/HistoryPage";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -43,6 +44,7 @@ function App() {
                                 <Route path="/selectTopic" element={localStorage.getItem("user") !== null ? <SelectTopicPage /> : <Navigate to='/login'/>} />
                                 <Route path="/matching" element={localStorage.getItem("user") !== null ? <MatchingPage /> : <Navigate to='/login'/>} />
                                 <Route path="/room/*" element={localStorage.getItem("user") !== null ? <CollaborationPage /> : <Navigate to='/login'/>} />
+                                <Route path="/history" element={localStorage.getItem("user") !== null ? <HistoryPage /> : <Navigate to='/login'/>} />
                             </Routes>
                         </JwtContext.Provider>
                     </UserContext.Provider>

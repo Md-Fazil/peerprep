@@ -12,6 +12,10 @@ function HomePage() {
         navigate("/selectTopic");
     };
 
+    const goToHistoryPage = () => {
+        navigate("/history");
+    };
+
     return (
         <Stack padding="10%">
             <Typography variant="h2" color="inherit" component="div">
@@ -24,6 +28,10 @@ function HomePage() {
             <br></br>
             <Button variant={"outlined"} onClick={goToTopicPage}>
                 Find a match via Topic!
+            </Button>
+            <br></br>
+            <Button variant={"outlined"} onClick={goToHistoryPage}>
+                History of completed questions
             </Button>
         </Stack>
     );

@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import { createUser } from "../services/UserService";
-import { STATUS_CODE_CONFLICT, STATUS_CODE_CREATED } from "../constants";
+import { STATUS_CODE_CREATED } from "../constants";
 import { Link, useNavigate } from "react-router-dom";
 
 function SignupPage() {
