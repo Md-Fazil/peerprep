@@ -29,3 +29,5 @@ app.use('/api/user', router).all((_, res) => {
 var port = process.env.PORT || 8000;
 
 app.listen(port, () => console.log(`user-service listening on port ${port}`));
+
+export default app;
