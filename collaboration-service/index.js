@@ -20,9 +20,13 @@ app.get("/", (req, res) => {
 // socket.io config
 const io = new Server(httpServer, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "*",
     },
 });
 io.on("connection", (socket) => collaborationController(io, socket));
 
-httpServer.listen(8008);
+var port = process.env.PORT || 8008;
+
+httpServer.listen(port, () => console.log(`collaboration-service listening on port ${port}`));
+
+export default app;

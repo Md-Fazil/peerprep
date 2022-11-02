@@ -4,8 +4,16 @@ import { useNavigate } from "react-router-dom";
 function HomePage() {
     let navigate = useNavigate();
 
-    const handleFindMatch = () => {
-        navigate("/select");
+    const goToDifficultyPage = () => {
+        navigate("/selectDifficulty");
+    };
+
+    const goToTopicPage = () => {
+        navigate("/selectTopic");
+    };
+
+    const goToHistoryPage = () => {
+        navigate("/history");
     };
 
     return (
@@ -14,8 +22,16 @@ function HomePage() {
                 Welcome to PeerPrep.
             </Typography>
             <br></br>
-            <Button variant={"outlined"} onClick={handleFindMatch}>
-                Find a match!
+            <Button variant={"outlined"} onClick={goToDifficultyPage}>
+                Find a match via Difficulty!
+            </Button>
+            <br></br>
+            <Button variant={"outlined"} onClick={goToTopicPage}>
+                Find a match via Topic!
+            </Button>
+            <br></br>
+            <Button variant={"outlined"} onClick={goToHistoryPage}>
+                History of completed questions
             </Button>
         </Stack>
     );

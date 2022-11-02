@@ -35,7 +35,7 @@ const MatchingPage = () => {
     const closeDialog = () => setIsDialogOpen(false);
     const closeFailDialog = () => {
         setIsDialogOpen(false);
-        navigate("/select");
+        navigate("/home");
     };
     const setErrorDialog = (msg) => {
         setIsDialogOpen(true);
@@ -128,7 +128,7 @@ const MatchingPage = () => {
                 <DialogActions>
                     {matchState.hasFailed && (
                         <Button onClick={closeFailDialog}>
-                            Return to Select
+                            Return to Home
                         </Button>
                     )}
                 </DialogActions>

@@ -1,11 +1,21 @@
 import redis from 'ioredis'
 import 'dotenv/config'
 
-const client = redis.createClient({
-    host: `${process.env.REDIS_URI}`,
-    port: 6379
-})
-// await client.connect()
+let client;
+if (process.env.CLOUD_REDIS_URL) {
+    client = redis.createClient({
+        host: `${process.env.CLOUD_REDIS_URL}`,
+        port: `${process.env.CLOUD_REDIS_PORT}`,
+        username: `${process.env.CLOUD_REDIS_USERNAME}`,
+        password: `${process.env.CLOUD_REDIS_PASSWORD}`
+    });
+} else {
+    client = redis.createClient({
+        host: `localhost`,
+        port: 6379
+    });
+}
+
 
 client.on('error', err => {
     console.log('Error ' + err);

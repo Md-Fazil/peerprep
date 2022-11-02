@@ -3,6 +3,7 @@ import cors from "cors";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import { matchController } from "./controller/match-controller.js";
+import 'dotenv/config';
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -20,9 +21,13 @@ app.get("/", (req, res) => {
 // socket.io config
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
   },
 });
 io.on("connection", (socket) => matchController(io, socket));
 
-httpServer.listen(8001);
+const port = process.env.PORT || 8001;
+
+httpServer.listen(port, () => console.log(`Matching service listening on port ${port}`));
+
+export default app;
