@@ -8,7 +8,6 @@ chai.should();
 
 describe("Users", () => {
     describe("GET /", () => {
-        // Test to get all Users record
         it("should get healthcheck page", (done) => {
             chai.request(app)
                 .get('/')
