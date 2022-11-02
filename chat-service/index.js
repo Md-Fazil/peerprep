@@ -20,10 +20,12 @@ app.get("/", (req, res) => {
 // socket.io config
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
   },
 });
 
 io.on("connection", (socket) => {chatController(io, socket)})
  
 httpServer.listen(8080);
+
+export default app;

@@ -11,6 +11,7 @@ app.options('*', cors())
 const router = express.Router()
 
 // Controller will contain all the User-defined Routes
+app.get('/', (req, res) => res.send("Hello World from user-service"))
 router.get('/', (_, res) => res.send('Hello World from user-service'))
 router.post('/', createUser)
 router.post('/login', loginUser)
@@ -25,5 +26,8 @@ app.use('/api/user', router).all((_, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
 })
 
+var port = process.env.PORT || 8000;
 
-app.listen(8000, () => console.log('user-service listening on port 8000'));
+app.listen(port, () => console.log(`user-service listening on port ${port}`));
+
+export default app;
