@@ -1,15 +1,25 @@
 import { Sequelize } from "sequelize";
 import 'dotenv/config';
 
-const sequelizeInit = new Sequelize("matching-service", 
-    process.env.CLOUD_DB_USERNAME, 
-    process.env.CLOUD_DB_PASSWORD, 
-    {
-    dialect: "postgres",
-    host: process.env.CLOUD_DB_URL,
-    port: process.env.CLOUD_DB_PORT
-    }
-);
+let sequelizeInit;
+if (process.env.CLOUD_DB_URL) {
+    sequelizeInit = new Sequelize("matching-service",
+        process.env.CLOUD_DB_USERNAME,
+        process.env.CLOUD_DB_PASSWORD,
+        {
+            dialect: "postgres",
+            host: process.env.CLOUD_DB_URL,
+            port: process.env.CLOUD_DB_PORT
+        }
+    );
+} else {
+    sequelizeInit = new Sequelize("test.db", "user", "pass", {
+        dialect: "sqlite",
+        host: "./dev.sqlite",
+        logging: (...msg) => console.log(`DB: ${msg[0]}`),
+    });
+}
+
 
 // Established connection with database
 try {

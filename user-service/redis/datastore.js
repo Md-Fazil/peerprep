@@ -1,7 +1,11 @@
 import redis from 'redis'
 import 'dotenv/config'
 
-const url = `redis://${process.env.CLOUD_REDIS_USERNAME}:${process.env.CLOUD_REDIS_PASSWORD}@${process.env.CLOUD_REDIS_URL}:${process.env.CLOUD_REDIS_PORT}`;
+
+let url = 'redis://localhost:6380';
+if (process.env.CLOUD_REDIS_URL) {
+    url = `redis://${process.env.CLOUD_REDIS_USERNAME}:${process.env.CLOUD_REDIS_PASSWORD}@${process.env.CLOUD_REDIS_URL}:${process.env.CLOUD_REDIS_PORT}`;
+}
 const client = redis.createClient({
     url
 })
