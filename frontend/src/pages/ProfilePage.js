@@ -107,7 +107,7 @@ function ProfilePage() {
             </Typography>
             <br></br>
             <br></br>
-            <Button variant={"outlined"} style={{ color: "red" }} onClick={handleDelete}>
+            <Button variant={"outlined"} style={{ color: "red", borderColor: "red" }} onClick={handleDelete}>
                 Delete Account
             </Button>
             <br></br>
@@ -117,7 +117,7 @@ function ProfilePage() {
             </Button>
             <br></br>
             <br></br>
-            <Button variant={"outlined"} onClick={handleLogout}>
+            <Button variant={"outlined"} style={{ color: "orange", borderColor: "orange" }} onClick={handleLogout}>
                 Logout
             </Button>
 

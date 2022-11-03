@@ -62,6 +62,7 @@ function CollaborationPage() {
                 room: null,
                 difficultyLevel: null,
                 topic: null,
+                partnerUsername: null
             };
         });
         localStorage.removeItem("question");

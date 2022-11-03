@@ -55,13 +55,14 @@ function HistoryPage() {
                 <Typography variant="h2" color="inherit" component="div">
                     History
                 </Typography>
+                <br></br>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 500 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Title</TableCell>
-                                <TableCell align="right">Topic</TableCell>
-                                <TableCell align="right">Difficulty</TableCell>
+                                <TableCell align="center">Title</TableCell>
+                                <TableCell align="center">Topic</TableCell>
+                                <TableCell align="center">Difficulty</TableCell>
                                 <TableCell align="right">Last Attempt</TableCell>
                                 <TableCell align="right"></TableCell>
                             </TableRow>
@@ -72,9 +73,17 @@ function HistoryPage() {
                                     key={qn.title}
                                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                                 >
-                                    <TableCell align="right">{qn.title}</TableCell>
-                                    <TableCell align="right">{qn.topic}</TableCell>
-                                    <TableCell align="right">{qn.difficulty}</TableCell>
+                                    <TableCell align="center">{qn.title}</TableCell>
+                                    <TableCell align="center">{qn.topic}</TableCell>
+                                    {qn.difficulty === "easy" && (
+                                        <TableCell style={{ color: "green" }} align="center">Easy</TableCell>
+                                    )}
+                                    {qn.difficulty === "medium" && (
+                                        <TableCell style={{ color: "orange" }} align="center">Medium</TableCell>
+                                    )}
+                                    {qn.difficulty === "hard" && (
+                                        <TableCell style={{ color: "red" }} align="center">Hard</TableCell>
+                                    )}
                                     <TableCell align="right">
                                         {new Date(qn.lastAttempt).toLocaleString("en-GB", {
                                             timeZone: "Asia/Singapore",
