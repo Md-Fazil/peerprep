@@ -71,12 +71,17 @@ const MatchingPage = () => {
     }, [user]);
 
     useEffect(() => {
-        if (matchState.isSuccess && matchState.roomId) {
+        if (
+            matchState.isSuccess &&
+            matchState.roomId &&
+            matchState.partnerUsername
+        ) {
             stopRenderingTimer();
             setUser((prevState) => {
                 return {
                     ...prevState,
                     room: matchState.roomId,
+                    partnerUsername: matchState.partnerUsername,
                 };
             });
         }
