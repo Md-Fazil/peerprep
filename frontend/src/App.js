@@ -38,13 +38,80 @@ function App() {
                                 ></Route>
                                 <Route path="/signup" element={<SignupPage />} />
                                 <Route path="/login" element={<LoginPage />} />
-                                <Route path="/home" element={localStorage.getItem("user") !== null ? <HomePage /> : <Navigate to='/login'/>} />
-                                <Route path="/profile" element={localStorage.getItem("user") !== null ? <ProfilePage /> : <Navigate to='/login'/>} />
-                                <Route path="/selectDifficulty" element={localStorage.getItem("user") !== null ? <SelectDifficultyPage /> : <Navigate to='/login'/>} />
-                                <Route path="/selectTopic" element={localStorage.getItem("user") !== null ? <SelectTopicPage /> : <Navigate to='/login'/>} />
-                                <Route path="/matching" element={localStorage.getItem("user") !== null ? <MatchingPage /> : <Navigate to='/login'/>} />
-                                <Route path="/room/*" element={localStorage.getItem("user") !== null && user.room !== null ? <CollaborationPage /> : <Navigate to='/login'/>} />
-                                <Route path="/history" element={localStorage.getItem("user") !== null ? <HistoryPage /> : <Navigate to='/login'/>} />
+                                <Route
+                                    path="/home"
+                                    element={
+                                        localStorage.getItem("user") !== null ? (
+                                            <HomePage />
+                                        ) : (
+                                            <Navigate to="/login" />
+                                        )
+                                    }
+                                />
+                                <Route
+                                    path="/profile"
+                                    element={
+                                        localStorage.getItem("user") !== null ? (
+                                            <ProfilePage />
+                                        ) : (
+                                            <Navigate to="/login" />
+                                        )
+                                    }
+                                />
+                                <Route
+                                    path="/selectDifficulty"
+                                    element={
+                                        localStorage.getItem("user") !== null ? (
+                                            <SelectDifficultyPage />
+                                        ) : (
+                                            <Navigate to="/login" />
+                                        )
+                                    }
+                                />
+                                <Route
+                                    path="/selectTopic"
+                                    element={
+                                        localStorage.getItem("user") !== null ? (
+                                            <SelectTopicPage />
+                                        ) : (
+                                            <Navigate to="/login" />
+                                        )
+                                    }
+                                />
+                                <Route
+                                    path="/matching"
+                                    element={
+                                        localStorage.getItem("user") !== null ? (
+                                            <MatchingPage />
+                                        ) : (
+                                            <Navigate to="/login" />
+                                        )
+                                    }
+                                />
+                                <Route
+                                    path="/room/*"
+                                    element={
+                                        localStorage.getItem("user") !== null ? (
+                                            user !== null && user.room !== null ? (
+                                                <CollaborationPage />
+                                            ) : (
+                                                <Navigate to="/home" />
+                                            )
+                                        ) : (
+                                            <Navigate to="/login" />
+                                        )
+                                    }
+                                />
+                                <Route
+                                    path="/history"
+                                    element={
+                                        localStorage.getItem("user") !== null ? (
+                                            <HistoryPage />
+                                        ) : (
+                                            <Navigate to="/login" />
+                                        )
+                                    }
+                                />
                             </Routes>
                         </JwtContext.Provider>
                     </UserContext.Provider>

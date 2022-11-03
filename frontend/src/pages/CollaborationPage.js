@@ -18,6 +18,7 @@ function CollaborationPage() {
     const [question, setQuestion] = useState({});
     const [openToast, setOpenToast] = useState(true);
     const [openAddQnToast, setOpenAddQnToast] = useState(false);
+    const [openReconnectToast, setOpenReconnectToast] = useState(false);
     const [finishStatus, setfinishStatus] = useState(false);
 
     const onBackButtonEvent = (e) => {
@@ -34,9 +35,11 @@ function CollaborationPage() {
     };
 
     useEffect(() => {
-        if (!user) { // if user refreshes the page
+        if (!user) {
+            // if user refreshes the page
             setUser(JSON.parse(localStorage.getItem("user")));
             setQuestion(JSON.parse(localStorage.getItem("question")));
+            setOpenReconnectToast(true);
         }
 
         // get question from QuestionService
@@ -152,6 +155,13 @@ function CollaborationPage() {
                     autoHideDuration={3000}
                     message="Marked question as done"
                     onClose={() => setOpenAddQnToast(false)}
+                />
+
+                <Snackbar
+                    open={openReconnectToast}
+                    autoHideDuration={3000}
+                    message="Reconnected"
+                    onClose={() => setOpenReconnectToast(false)}
                 />
             </Box>
         )
