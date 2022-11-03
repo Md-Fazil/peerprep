@@ -18,12 +18,37 @@ function CollaborationPage() {
     const [question, setQuestion] = useState({});
     const [openToast, setOpenToast] = useState(true);
     const [openAddQnToast, setOpenAddQnToast] = useState(false);
+    const [finishStatus, setfinishStatus] = useState(false);
+
+    const onBackButtonEvent = (e) => {
+        e.preventDefault();
+        if (!finishStatus) {
+            if (window.confirm("Are you sure you want to exit the room?")) {
+                setfinishStatus(true);
+                handleLeave();
+            } else {
+                window.history.pushState(null, null, window.location.pathname);
+                setfinishStatus(false);
+            }
+        }
+    };
 
     useEffect(() => {
-        if (!user) {
+        if (!user) { // if user refreshes the page
             setUser(JSON.parse(localStorage.getItem("user")));
             setQuestion(JSON.parse(localStorage.getItem("question")));
         }
+
+        // get question from QuestionService
+        fetchQuestion();
+        console.log("question in collab:", question);
+
+        // back-button
+        window.history.pushState(null, null, window.location.pathname);
+        window.addEventListener("popstate", onBackButtonEvent);
+        return () => {
+            window.removeEventListener("popstate", onBackButtonEvent);
+        };
     }, []);
 
     async function fetchQuestion() {
@@ -37,12 +62,6 @@ function CollaborationPage() {
     useEffect(() => {
         localStorage.setItem("question", JSON.stringify(question));
     }, [question]);
-
-    // get question from QuestionService
-    useEffect(() => {
-        fetchQuestion();
-        console.log("question in collab:", question);
-    }, []);
 
     useEffect(() => {
         localStorage.setItem("user", JSON.stringify(user));
@@ -62,7 +81,7 @@ function CollaborationPage() {
                 room: null,
                 difficultyLevel: null,
                 topic: null,
-                partnerUsername: null
+                partnerUsername: null,
             };
         });
         localStorage.removeItem("question");

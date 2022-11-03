@@ -1,6 +1,6 @@
 import { Avatar, AppBar, Box, Toolbar, Button, Typography } from "@mui/material";
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 
 const Header = () => {
@@ -13,13 +13,22 @@ const Header = () => {
     const { user, setUser } = useContext(UserContext);
 
     let navigate = useNavigate();
+    const location = useLocation();
 
     const handleProfile = () => {
-        navigate("/profile");
+        if (location.pathname.match("/room") === null) {
+            navigate("/profile");
+        } else {
+            window.alert("If you want to access Profile, please click on the Leave button.");
+        }
     };
 
     const handleHome = () => {
-        navigate("/home");
+        if (location.pathname.match("/room") === null) {
+            navigate("/home");
+        } else {
+            window.alert("If you want to access Home, please click on the Leave button.");
+        }
     };
 
     return (
