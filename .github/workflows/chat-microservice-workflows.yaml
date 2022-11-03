@@ -2,7 +2,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ test-deployment ]
+    branches: [ main ]
     paths:
       - 'chat-service/**'
 
@@ -38,7 +38,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: 'ap-southeast-1'
-          aws-bucket: 'testbucketforgithubactions'
+          aws-bucket: 'chat-service-artifact-source-bucket'
           bucket-root: '/'
           destination-dir: '/'
           file-path: './chat-service/deployment.zip'  
