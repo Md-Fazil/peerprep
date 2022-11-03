@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useChatService } from "../hooks/useChatService";
 
-import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+import '../chat_style/main.scss'
 import {
     MainContainer,
     ChatContainer,
@@ -9,8 +10,6 @@ import {
     Message,
     MessageInput,
 } from "@chatscope/chat-ui-kit-react";
-
-import { useChatService } from "../hooks/useChatService";
 
 const Chat = () => {
     let navigate = useNavigate();
@@ -48,7 +47,6 @@ const Chat = () => {
                                         message.user === chatState.name ? "outgoing" : "incoming",
                                 }}
                             />
-                            <Message.Footer sender={message.user} sentTime="just now" />
                         </div>
                     ))}
                 </MessageList>

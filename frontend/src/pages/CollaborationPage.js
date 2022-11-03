@@ -78,7 +78,7 @@ function CollaborationPage() {
     return (
         user && (
             <Box padding="1%">
-                <Grid container justifyContent="flex-end">
+                <Grid container justifyContent="space-between" alignItems="center">
                     <Button variant="outlined" color="success" onClick={handleMarkQn}>
                         Mark Question as Done
                     </Button>
@@ -87,21 +87,26 @@ function CollaborationPage() {
                         Leave
                     </Button>
                 </Grid>
+
                 <Grid container direction="row" justifyContent="center" alignItems="stretch">
                     <Grid item={true} xs={4} padding="1%">
                         <Typography variant="h3">Question</Typography>
+                        <br></br>
                         <h2>{question.title}</h2>
                         <h2>Difficulty: {question.difficulty}</h2>
                         <h3>{question.question}</h3>
                     </Grid>
-                    <Grid item={true} xs={4} padding="1%">
-                        <Typography variant="h3">Live code area</Typography>
+
+                    <Grid item={true} xs={5} padding="1%">
+                        <Typography variant="h3">Code</Typography>
+                        <br></br>
                         <Editor />
                     </Grid>
 
                     <Grid item={true} xs={3} padding="1%">
                         <Typography variant="h3">Chat</Typography>
-                        <div style={{ position: "relative", height: "500px" }}>
+                        <br></br>
+                        <div style={{ position: "relative", height: "600px" }}>
                             <Chat></Chat>
                         </div>
                     </Grid>
