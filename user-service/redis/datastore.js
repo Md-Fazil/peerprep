@@ -1,9 +1,13 @@
 import redis from 'redis'
 import 'dotenv/config'
 
+
+let url = 'redis://localhost:6380';
+if (process.env.CLOUD_REDIS_URL) {
+    url = `redis://${process.env.CLOUD_REDIS_USERNAME}:${process.env.CLOUD_REDIS_PASSWORD}@${process.env.CLOUD_REDIS_URL}:${process.env.CLOUD_REDIS_PORT}`;
+}
 const client = redis.createClient({
-    host:`${process.env.REDIS_URI}`,
-    port:6379
+    url
 })
 
 await client.connect()

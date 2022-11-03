@@ -17,6 +17,7 @@ export const useMatchingService = ({
         isSuccess: false,
         roomId: null,
         error: null,
+        partnerUsername: null,
     });
 
     const findMatch = ({ username, filterKey }) => {
@@ -39,7 +40,7 @@ export const useMatchingService = ({
         });
     };
 
-    const updateOnMatchSuccess = (roomId) => {
+    const updateOnMatchSuccess = (roomId, partnerUsername) => {
         setMatchState((prevState) => {
             return {
                 ...prevState,
@@ -47,6 +48,7 @@ export const useMatchingService = ({
                 isSuccess: true,
                 hasFailed: false,
                 roomId,
+                partnerUsername,
             };
         });
     };
@@ -84,8 +86,8 @@ export const useMatchingService = ({
             }
         });
 
-        socket.on("matchSuccess", ({ roomId }) => {
-            updateOnMatchSuccess(roomId);
+        socket.on("matchSuccess", ({ roomId, partnerUsername }) => {
+            updateOnMatchSuccess(roomId, partnerUsername);
         });
 
         socket.on("matchFail", ({ error }) => {
