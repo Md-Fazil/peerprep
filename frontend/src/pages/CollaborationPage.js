@@ -93,7 +93,15 @@ function CollaborationPage() {
                         <Typography variant="h3">Question</Typography>
                         <br></br>
                         <h2>{question.title}</h2>
-                        <h2>Difficulty: {question.difficulty}</h2>
+                        {question.difficulty === "easy" && (
+                            <h3 style={{ color: "green" }}>Difficulty: Easy</h3>
+                        )}
+                        {question.difficulty === "medium" && (
+                            <h3 style={{ color: "orange" }}>Difficulty: Medium</h3>
+                        )}
+                        {question.difficulty === "hard" && (
+                            <h3 style={{ color: "red" }}>Difficulty: Hard</h3>
+                        )}
                         <h3>{question.question}</h3>
                     </Grid>
 

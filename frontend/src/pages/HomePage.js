@@ -30,7 +30,7 @@ function HomePage() {
                 Find a match via Topic!
             </Button>
             <br></br>
-            <Button variant={"outlined"} onClick={goToHistoryPage}>
+            <Button color="success" variant={"outlined"} onClick={goToHistoryPage}>
                 History of completed questions
             </Button>
         </Stack>
