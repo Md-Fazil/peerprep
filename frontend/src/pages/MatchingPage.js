@@ -1,4 +1,5 @@
 import {
+    Box,
     Button,
     Container,
     Dialog,
@@ -6,11 +7,12 @@ import {
     DialogContent,
     DialogContentText,
     DialogTitle,
+    Stack,
     Typography,
 } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CountdownTimer from "../components/CountdownTimer";
+import CountdownTimer from "../components/CountdownTimer/CountdownTimer";
 import { UserContext } from "../contexts/UserContext";
 import { useMatchingService } from "../hooks/useMatchingService";
 
@@ -19,14 +21,12 @@ const TIMER_INTERVAL = 5;
 
 const MatchingPage = () => {
     const navigate = useNavigate();
-    const { findMatch, disconnect, matchState } = useMatchingService({
-        enabled: true,
-    });
+    const { findMatch, failMatch, disconnect, matchState } = useMatchingService(
+        {
+            enabled: true,
+        }
+    );
     const { user, setUser } = useContext(UserContext);
-    const [timer, setTimer] = useState({
-        hasFinished: false,
-        isRendered: true,
-    });
 
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [dialogTitle, setDialogTitle] = useState("");
@@ -76,7 +76,6 @@ const MatchingPage = () => {
             matchState.roomId &&
             matchState.partnerUsername
         ) {
-            stopRenderingTimer();
             setUser((prevState) => {
                 return {
                     ...prevState,
@@ -98,28 +97,34 @@ const MatchingPage = () => {
         }
     }, [user]);
 
-    const stopRenderingTimer = () => {
-        setTimer((prevState) => {
-            const newState = { ...prevState };
-            newState.isRendered = false;
-            return newState;
-        });
-    };
-
     const handleTimeout = () => {
-        //Todo
+        disconnect();
+        failMatch();
     };
 
     return (
         <Container>
-            <Typography variant="h2">Finding match...</Typography>
-            {timer.isRendered && (
-                <CountdownTimer
-                    interval={TIMER_INTERVAL}
-                    handleFinishedTimer={handleTimeout}
-                    callback={stopRenderingTimer}
-                />
-            )}
+            <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                minHeight="50vh"
+            >
+                <Stack
+                    justifyContent="center"
+                    alignItems="center"
+                    padding="1rem"
+                >
+                    <CountdownTimer
+                        interval={TIMER_INTERVAL}
+                        timerFinishedCallback={handleTimeout}
+                    />
+                    <Typography variant="h5" padding="1rem">
+                        Please wait till we find you a match...
+                    </Typography>
+                </Stack>
+            </Box>
+
             <Dialog open={isDialogOpen} onClose={closeDialog}>
                 <DialogTitle>{dialogTitle}</DialogTitle>
                 <DialogContent>
