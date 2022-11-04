@@ -22,7 +22,7 @@ export async function viewRandomQuestion(req, res) {
         }
         let key = room + "key";
         const unlock = await lock(redis, key);
-        const questionFromCache = await getQuestion(req.body.room);
+        const questionFromCache = await getQuestion(room);
         if (questionFromCache) {
             await expireQuestion(room);
             await unlock();
@@ -52,13 +52,14 @@ export async function viewQuestionByDifficulty(req, res) {
         }
         let key = room + "key";
         const unlock = await lock(redis, key);
-        const questionFromCache = await getQuestion(req.body.room);
+        const questionFromCache = await getQuestion(room);
         if (questionFromCache) {
             await expireQuestion(room);
             await unlock();
             return res.status(200).json({ question: JSON.parse(questionFromCache) });
         }
         const question = await _getQuestionByDifficulty(level);
+        console.log("qn: ", question)
         await storeQuestion(room, JSON.stringify(question));
         await unlock();
         return res.status(200).json({ question: question });
@@ -80,7 +81,7 @@ export async function viewQuestionByTopic(req, res) {
         }
         let key = room + "key";
         const unlock = await lock(redis, key);
-        const questionFromCache = await getQuestion(req.body.room);
+        const questionFromCache = await getQuestion(room);
         if (questionFromCache) {
             await expireQuestion(room);
             await unlock();

@@ -234,6 +234,7 @@ const Editor = () => {
                 showPrintMargin={true}
                 showGutter={true}
                 highlightActiveLine={true}
+                width="100%"
                 setOptions={{
                     enableBasicAutocompletion: editorState.autocomplete,
                     enableLiveAutocompletion: editorState.autocomplete,

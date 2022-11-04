@@ -18,12 +18,40 @@ function CollaborationPage() {
     const [question, setQuestion] = useState({});
     const [openToast, setOpenToast] = useState(true);
     const [openAddQnToast, setOpenAddQnToast] = useState(false);
+    const [openReconnectToast, setOpenReconnectToast] = useState(false);
+    const [finishStatus, setfinishStatus] = useState(false);
+
+    const onBackButtonEvent = (e) => {
+        e.preventDefault();
+        if (!finishStatus) {
+            if (window.confirm("Are you sure you want to exit the room?")) {
+                setfinishStatus(true);
+                handleLeave();
+            } else {
+                window.history.pushState(null, null, window.location.pathname);
+                setfinishStatus(false);
+            }
+        }
+    };
 
     useEffect(() => {
         if (!user) {
+            // if user refreshes the page
             setUser(JSON.parse(localStorage.getItem("user")));
             setQuestion(JSON.parse(localStorage.getItem("question")));
+            setOpenReconnectToast(true);
         }
+
+        // get question from QuestionService
+        fetchQuestion();
+        console.log("question in collab:", question);
+
+        // back-button
+        window.history.pushState(null, null, window.location.pathname);
+        window.addEventListener("popstate", onBackButtonEvent);
+        return () => {
+            window.removeEventListener("popstate", onBackButtonEvent);
+        };
     }, []);
 
     async function fetchQuestion() {
@@ -37,12 +65,6 @@ function CollaborationPage() {
     useEffect(() => {
         localStorage.setItem("question", JSON.stringify(question));
     }, [question]);
-
-    // get question from QuestionService
-    useEffect(() => {
-        fetchQuestion();
-        console.log("question in collab:", question);
-    }, []);
 
     useEffect(() => {
         localStorage.setItem("user", JSON.stringify(user));
@@ -62,6 +84,7 @@ function CollaborationPage() {
                 room: null,
                 difficultyLevel: null,
                 topic: null,
+                partnerUsername: null,
             };
         });
         localStorage.removeItem("question");
@@ -78,7 +101,7 @@ function CollaborationPage() {
     return (
         user && (
             <Box padding="1%">
-                <Grid container justifyContent="flex-end">
+                <Grid container justifyContent="end" alignItems="center">
                     <Button variant="outlined" color="success" onClick={handleMarkQn}>
                         Mark Question as Done
                     </Button>
@@ -87,21 +110,37 @@ function CollaborationPage() {
                         Leave
                     </Button>
                 </Grid>
+
                 <Grid container direction="row" justifyContent="center" alignItems="stretch">
                     <Grid item={true} xs={4} padding="1%">
-                        <Typography variant="h3">Question</Typography>
-                        <h2>{question.title}</h2>
-                        <h2>Difficulty: {question.difficulty}</h2>
-                        <h3>{question.question}</h3>
+                        <Typography variant="h4">{question.title}</Typography>
+                        {question.difficulty === "easy" && (
+                            <Typography variant="h6" style={{ color: "green" }}>
+                                Difficulty: Easy
+                            </Typography>
+                        )}
+                        {question.difficulty === "medium" && (
+                            <Typography variant="h6" style={{ color: "orange" }}>
+                                Difficulty: Medium
+                            </Typography>
+                        )}
+                        {question.difficulty === "hard" && (
+                            <Typography variant="h6" style={{ color: "red" }}>
+                                Difficulty: Hard
+                            </Typography>
+                        )}
+                        <br></br>
+                        <Typography variant="body1">{question.question}</Typography>
                     </Grid>
-                    <Grid item={true} xs={4} padding="1%">
-                        <Typography variant="h3">Live code area</Typography>
+
+                    <Grid item={true} xs={5} padding="1%">
                         <Editor />
                     </Grid>
 
                     <Grid item={true} xs={3} padding="1%">
-                        <Typography variant="h3">Chat</Typography>
-                        <div style={{ position: "relative", height: "500px" }}>
+                        <Typography variant="h4">Chat</Typography>
+                        <br></br>
+                        <div style={{ position: "relative", height: "600px" }}>
                             <Chat></Chat>
                         </div>
                     </Grid>
@@ -119,6 +158,13 @@ function CollaborationPage() {
                     autoHideDuration={3000}
                     message="Marked question as done"
                     onClose={() => setOpenAddQnToast(false)}
+                />
+
+                <Snackbar
+                    open={openReconnectToast}
+                    autoHideDuration={3000}
+                    message="Reconnected"
+                    onClose={() => setOpenReconnectToast(false)}
                 />
             </Box>
         )
