@@ -1,14 +1,35 @@
 import { Button, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 function HomePage() {
+    const { user, setUser } = useContext(UserContext);
     let navigate = useNavigate();
 
     const goToDifficultyPage = () => {
+        setUser((prevState) => {
+            return {
+                ...prevState,
+                room: null,
+                difficultyLevel: null,
+                topic: null,
+                partnerUsername: null,
+            };
+        });
         navigate("/selectDifficulty");
     };
 
     const goToTopicPage = () => {
+        setUser((prevState) => {
+            return {
+                ...prevState,
+                room: null,
+                difficultyLevel: null,
+                topic: null,
+                partnerUsername: null,
+            };
+        });
         navigate("/selectTopic");
     };
 
@@ -30,7 +51,7 @@ function HomePage() {
                 Find a match via Topic!
             </Button>
             <br></br>
-            <Button variant={"outlined"} onClick={goToHistoryPage}>
+            <Button color="success" variant={"outlined"} onClick={goToHistoryPage}>
                 History of completed questions
             </Button>
         </Stack>

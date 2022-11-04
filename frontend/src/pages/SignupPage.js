@@ -27,7 +27,7 @@ function SignupPage() {
         if (localStorage.getItem("user") !== null) {
             navigate("/home");
         }
-    })
+    });
 
     const handleSignup = async () => {
         setIsSignupSuccess(false);
@@ -36,16 +36,16 @@ function SignupPage() {
             if (res && res.status === STATUS_CODE_CREATED) {
                 setSuccessDialog("Account successfully created");
                 setIsSignupSuccess(true);
-                navigate("/login");
             }
         } catch (err) {
-            setErrorDialog("Unable to signup, please try again.");
+            console.log(err.response.data)
+            setErrorDialog(err.response.data.message);
         }
     };
 
     const handleLogin = () => {
         navigate("/login");
-    }
+    };
 
     const closeDialog = () => setIsDialogOpen(false);
 
@@ -96,15 +96,12 @@ function SignupPage() {
                     Sign up
                 </Button>
             </Box>
-
             <br></br>
-
             <Box display={"flex"} flexDirection={"row"} justifyContent={"flex-end"}>
                 <Button variant={"outlined"} onClick={handleLogin}>
                     Already an user? Sign in here!
                 </Button>
             </Box>
-
             <Dialog open={isDialogOpen} onClose={closeDialog}>
                 <DialogTitle>{dialogTitle}</DialogTitle>
                 <DialogContent>
@@ -116,7 +113,7 @@ function SignupPage() {
                             Log in
                         </Button>
                     ) : (
-                        <Button onClick={closeDialog}>Done</Button>
+                        <Button onClick={closeDialog}>Okay</Button>
                     )}
                 </DialogActions>
             </Dialog>

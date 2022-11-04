@@ -59,7 +59,7 @@ function ProfilePage() {
                 cleanDataAndRedirect();
             }
         } catch (err) {
-            setErrorDialog("Having issues deleting account, please try again.");
+            setErrorDialog(err.response.data.message);
         }
     };
 
@@ -70,7 +70,7 @@ function ProfilePage() {
                 cleanDataAndRedirect();
             }
         } catch (err) {
-            setErrorDialog("Having issues logging out, please try again.");
+            setErrorDialog(err.response.data.message);
         }
     };
 
@@ -94,7 +94,7 @@ function ProfilePage() {
                 setNewPassword('');
             }
         } catch (err) {
-            setErrorDialog("Having issues logging out, please try again.");
+            setErrorDialog(err.response.data.message);
         }
         closePasswordDialog();
     };
@@ -107,7 +107,7 @@ function ProfilePage() {
             </Typography>
             <br></br>
             <br></br>
-            <Button variant={"outlined"} style={{ color: "red" }} onClick={handleDelete}>
+            <Button variant={"outlined"} style={{ color: "red", borderColor: "red" }} onClick={handleDelete}>
                 Delete Account
             </Button>
             <br></br>
@@ -117,7 +117,7 @@ function ProfilePage() {
             </Button>
             <br></br>
             <br></br>
-            <Button variant={"outlined"} onClick={handleLogout}>
+            <Button variant={"outlined"} style={{ color: "orange", borderColor: "orange" }} onClick={handleLogout}>
                 Logout
             </Button>
 

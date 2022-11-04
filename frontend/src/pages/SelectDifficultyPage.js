@@ -39,6 +39,7 @@ const SelectDiffcultyPage = () => {
             <br></br>
             <br></br>
             <Button
+                style={{ color: "orange", borderColor: "orange" }}
                 id="btn-medium"
                 value="medium"
                 size="large"
