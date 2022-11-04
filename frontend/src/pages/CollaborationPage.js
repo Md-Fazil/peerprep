@@ -101,7 +101,7 @@ function CollaborationPage() {
     return (
         user && (
             <Box padding="1%">
-                <Grid container justifyContent="space-between" alignItems="center">
+                <Grid container justifyContent="end" alignItems="center">
                     <Button variant="outlined" color="success" onClick={handleMarkQn}>
                         Mark Question as Done
                     </Button>
@@ -113,29 +113,32 @@ function CollaborationPage() {
 
                 <Grid container direction="row" justifyContent="center" alignItems="stretch">
                     <Grid item={true} xs={4} padding="1%">
-                        <Typography variant="h3">Question</Typography>
-                        <br></br>
-                        <h2>{question.title}</h2>
+                        <Typography variant="h4">{question.title}</Typography>
                         {question.difficulty === "easy" && (
-                            <h3 style={{ color: "green" }}>Difficulty: Easy</h3>
+                            <Typography variant="h6" style={{ color: "green" }}>
+                                Difficulty: Easy
+                            </Typography>
                         )}
                         {question.difficulty === "medium" && (
-                            <h3 style={{ color: "orange" }}>Difficulty: Medium</h3>
+                            <Typography variant="h6" style={{ color: "orange" }}>
+                                Difficulty: Medium
+                            </Typography>
                         )}
                         {question.difficulty === "hard" && (
-                            <h3 style={{ color: "red" }}>Difficulty: Hard</h3>
+                            <Typography variant="h6" style={{ color: "red" }}>
+                                Difficulty: Hard
+                            </Typography>
                         )}
-                        <h3>{question.question}</h3>
+                        <br></br>
+                        <Typography variant="body1">{question.question}</Typography>
                     </Grid>
 
                     <Grid item={true} xs={5} padding="1%">
-                        <Typography variant="h3">Code</Typography>
-                        <br></br>
                         <Editor />
                     </Grid>
 
                     <Grid item={true} xs={3} padding="1%">
-                        <Typography variant="h3">Chat</Typography>
+                        <Typography variant="h4">Chat</Typography>
                         <br></br>
                         <div style={{ position: "relative", height: "600px" }}>
                             <Chat></Chat>
