@@ -31,6 +31,12 @@ export const useMatchingService = ({
         socketRef.current.emit("findMatch", { username, filterKey });
     };
 
+    const failMatch = () => {
+        setMatchState((prevState) => {
+            return { ...prevState, hasFailed: true };
+        });
+    };
+
     const disconnect = () => {
         socketRef.current.disconnect();
     };
@@ -108,6 +114,7 @@ export const useMatchingService = ({
 
     return {
         findMatch,
+        failMatch,
         disconnect,
         matchState,
     };
