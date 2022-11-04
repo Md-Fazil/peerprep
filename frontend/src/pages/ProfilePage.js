@@ -59,7 +59,7 @@ function ProfilePage() {
                 cleanDataAndRedirect();
             }
         } catch (err) {
-            setErrorDialog("Having issues deleting account, please try again.");
+            setErrorDialog(err.response.data.message);
         }
     };
 
@@ -70,7 +70,7 @@ function ProfilePage() {
                 cleanDataAndRedirect();
             }
         } catch (err) {
-            setErrorDialog("Having issues logging out, please try again.");
+            setErrorDialog(err.response.data.message);
         }
     };
 
@@ -94,7 +94,7 @@ function ProfilePage() {
                 setNewPassword('');
             }
         } catch (err) {
-            setErrorDialog("Having issues logging out, please try again.");
+            setErrorDialog(err.response.data.message);
         }
         closePasswordDialog();
     };
