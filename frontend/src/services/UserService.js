@@ -1,6 +1,12 @@
-import { USER_SERVICE_ENDPOINT } from "../constants";
-
 const axios = require("axios");
+
+let USER_SERVICE_ENDPOINT = ''
+
+if (process.env.NODE_ENV === "production") {
+    USER_SERVICE_ENDPOINT = process.env.REACT_APP_USER_SERVICE_CLOUD_ENDPOINT;
+} else {
+    USER_SERVICE_ENDPOINT = process.env.REACT_APP_USER_SERVICE_LOCAL_ENDPOINT;
+}
 
 export async function createUser(data) {
     const res = await axios.post(USER_SERVICE_ENDPOINT + `/`, data);

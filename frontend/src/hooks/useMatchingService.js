@@ -1,6 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import { io } from "socket.io-client";
-import { MATCHING_SERVICE_ENDPOINT } from "../constants";
+
+let MATCHING_SERVICE_ENDPOINT = ''
+
+if (process.env.NODE_ENV === "production") {
+    MATCHING_SERVICE_ENDPOINT = process.env.REACT_APP_MATCHING_SERVICE_CLOUD_ENDPOINT;
+} else {
+    MATCHING_SERVICE_ENDPOINT = process.env.REACT_APP_MATCHING_SERVICE_LOCAL_ENDPOINT;
+}
 
 export const useMatchingService = ({
     enabled,
@@ -22,6 +29,12 @@ export const useMatchingService = ({
 
     const findMatch = ({ username, filterKey }) => {
         socketRef.current.emit("findMatch", { username, filterKey });
+    };
+
+    const failMatch = () => {
+        setMatchState((prevState) => {
+            return { ...prevState, hasFailed: true };
+        });
     };
 
     const disconnect = () => {
@@ -101,6 +114,7 @@ export const useMatchingService = ({
 
     return {
         findMatch,
+        failMatch,
         disconnect,
         matchState,
     };

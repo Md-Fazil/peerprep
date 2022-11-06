@@ -1,6 +1,13 @@
-import { useEffect, useState, useRef, useDebugValue } from "react";
+import { useEffect, useState, useRef } from "react";
 import { io } from "socket.io-client";
-import { COLLABORATION_SERVICE_ENDPOINT } from "../constants";
+
+let COLLABORATION_SERVICE_ENDPOINT = ''
+
+if (process.env.NODE_ENV === "production") {
+    COLLABORATION_SERVICE_ENDPOINT = process.env.REACT_APP_COLLABORATION_SERVICE_CLOUD_ENDPOINT;
+} else {
+    COLLABORATION_SERVICE_ENDPOINT = process.env.REACT_APP_COLLABORATION_SERVICE_LOCAL_ENDPOINT;
+}
 
 export const useCollaborationService = ({
     enabled,
