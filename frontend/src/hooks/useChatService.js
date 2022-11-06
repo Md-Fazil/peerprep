@@ -1,7 +1,14 @@
 import { useEffect, useState, useContext } from "react";
 import { io } from "socket.io-client";
-import { CHAT_SERVICE_ENDPOINT } from "../constants";
 import { UserContext } from "../contexts/UserContext";
+
+let CHAT_SERVICE_ENDPOINT = ''
+
+if (process.env.NODE_ENV === "production") {
+    CHAT_SERVICE_ENDPOINT = process.env.REACT_APP_CHAT_SERVICE_CLOUD_ENDPOINT;
+} else {
+    CHAT_SERVICE_ENDPOINT = process.env.REACT_APP_CHAT_SERVICE_LOCAL_ENDPOINT;
+}
 
 export const useChatService = () => {
     const socket = io(CHAT_SERVICE_ENDPOINT);
