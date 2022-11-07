@@ -36,9 +36,9 @@ function App() {
     const jwtValue = useMemo(() => ({ jwt, setJwt }), [jwt, setJwt]);
 
     return (
-        <div>
+        <div className="App">
             <ThemeProvider theme={darkTheme}>
-                <div className="App" style={{
+                <div style={{
                     backgroundImage: "url(/blue_background.jpeg)",
                     backgroundSize: "cover",
                     width: '100vw',
