@@ -8,7 +8,7 @@ import {
 import { ormCreateMatchInfo as _createMatchInfo } from "../model/match-info-orm.js";
 
 // Expressed in milliseconds
-export const TIMEOUT_INTERVAL = 5000;
+export const TIMEOUT_INTERVAL = 30000;
 
 /**
  * Handles the logic of matching users.

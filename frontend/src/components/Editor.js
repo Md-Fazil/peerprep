@@ -199,7 +199,7 @@ const Editor = () => {
                 </Select>
             </FormControl>
             <FormControl>
-                <InputLabel id="editor-font-size-label">Font size</InputLabel>
+                <InputLabel id="editor-font-size-label">Size</InputLabel>
                 <Select
                     labelId="editor-font-size-label"
                     id="editor-font-size-select"

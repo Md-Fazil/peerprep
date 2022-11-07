@@ -70,7 +70,7 @@ function SignupPage() {
             minHeight="100vh"
         >
             {" "}
-            <Typography variant={"h3"} marginBottom={"2rem"}>
+            <Typography sx={{fontWeight: 'bold'}} variant={"h3"} marginBottom={"2rem"}>
                 Sign Up
             </Typography>
             <TextField
@@ -92,13 +92,13 @@ function SignupPage() {
                 style={{ width: "20%" }}
             />
             <Box display={"flex"} flexDirection={"row"} justifyContent={"flex-end"}>
-                <Button variant={"outlined"} onClick={handleSignup}>
+                <Button variant={"contained"} onClick={handleSignup}>
                     Sign up
                 </Button>
             </Box>
             <br></br>
             <Box display={"flex"} flexDirection={"row"} justifyContent={"flex-end"}>
-                <Button variant={"outlined"} onClick={handleLogin}>
+                <Button variant={"contained"} onClick={handleLogin}>
                     Already an user? Sign in here!
                 </Button>
             </Box>

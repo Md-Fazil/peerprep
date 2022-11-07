@@ -1,6 +1,5 @@
 import {
     Button,
-    Box,
     Dialog,
     DialogActions,
     DialogContent,
@@ -79,7 +78,7 @@ function ProfilePage() {
         setJwt(null);
         localStorage.removeItem("user");
         navigate("/login");
-    }
+    };
 
     const openPasswordDialog = () => {
         setIsPasswordDialogOpen(true);
@@ -87,11 +86,15 @@ function ProfilePage() {
 
     const handlePassword = async () => {
         try {
-            const res = await changePassword({ username: user.username, currentPassword: password, newPassword: newPassword });
+            const res = await changePassword({
+                username: user.username,
+                currentPassword: password,
+                newPassword: newPassword,
+            });
             if (res && res.status === STATUS_CODE_SUCCESS) {
                 setSuccessDialog("Successfully changed password!");
-                setPassword('');
-                setNewPassword('');
+                setPassword("");
+                setNewPassword("");
             }
         } catch (err) {
             setErrorDialog(err.response.data.message);
@@ -100,64 +103,65 @@ function ProfilePage() {
     };
 
     return (
-        user &&
-        <Stack padding="5%">
-            <Typography variant="h2" color="inherit" component="div">
-                Profile of {user.username}
-            </Typography>
-            <br></br>
-            <br></br>
-            <Button variant={"outlined"} style={{ color: "red", borderColor: "red" }} onClick={handleDelete}>
-                Delete Account
-            </Button>
-            <br></br>
-            <br></br>
-            <Button variant={"outlined"} onClick={openPasswordDialog}>
-                Change Password
-            </Button>
-            <br></br>
-            <br></br>
-            <Button variant={"outlined"} style={{ color: "orange", borderColor: "orange" }} onClick={handleLogout}>
-                Logout
-            </Button>
+        user && (
+            <Stack padding="5%">
+                <Typography variant="h2" component="div">
+                    Profile of {user.username}
+                </Typography>
+                <br></br>
+                <br></br>
+                <Button variant={"contained"} style={{ color: "red" }} onClick={handleDelete}>
+                    Delete Account
+                </Button>
+                <br></br>
+                <br></br>
+                <Button variant={"contained"} onClick={openPasswordDialog}>
+                    Change Password
+                </Button>
+                <br></br>
+                <br></br>
+                <Button variant={"contained"} color="error" onClick={handleLogout}>
+                    Logout
+                </Button>
 
-            <Dialog open={isPasswordDialogOpen} onClose={closeDialog} fullWidth maxWidth="xs">
-                <DialogTitle>Change Password</DialogTitle>
-                <Stack padding="5%">
-                    <TextField
-                        label="Current password"
-                        variant="standard"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        sx={{ width: "80%", marginBottom: "1rem" }}
-                        autoFocus
-                        style={{}}
-                    />
-                    <TextField
-                        label="New password"
-                        variant="standard"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        sx={{ width: "80%", marginBottom: "1rem" }}
-                        style={{}}
-                    />
-                </Stack>
-                <DialogActions>
-                    <Button onClick={closePasswordDialog}>Cancel</Button>
-                    <Button onClick={handlePassword}>Done</Button>
-                </DialogActions>
-            </Dialog>
+                <Dialog open={isPasswordDialogOpen} onClose={closeDialog} fullWidth maxWidth="xs">
+                    <DialogTitle>Change Password</DialogTitle>
+                    <Stack padding="5%">
+                        <TextField
+                            label="Current password"
+                            variant="standard"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            sx={{ width: "80%", marginBottom: "1rem" }}
+                            autoFocus
+                            style={{}}
+                        />
+                        <TextField
+                            label="New password"
+                            variant="standard"
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            sx={{ width: "80%", marginBottom: "1rem" }}
+                            style={{}}
+                        />
+                    </Stack>
+                    <DialogActions>
+                        <Button onClick={closePasswordDialog}>Cancel</Button>
+                        <Button onClick={handlePassword}>Done</Button>
+                    </DialogActions>
+                </Dialog>
 
-            <Dialog open={isDialogOpen} onClose={closeDialog}>
-                <DialogTitle>{dialogTitle}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>{dialogMsg}</DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={closeDialog}>Done</Button>
-                </DialogActions>
-            </Dialog>
-        </Stack>
+                <Dialog open={isDialogOpen} onClose={closeDialog}>
+                    <DialogTitle>{dialogTitle}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>{dialogMsg}</DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={closeDialog}>Done</Button>
+                    </DialogActions>
+                </Dialog>
+            </Stack>
+        )
     );
 }
 

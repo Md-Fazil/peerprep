@@ -16,18 +16,22 @@ const Header = () => {
     const location = useLocation();
 
     const handleProfile = () => {
-        if (location.pathname.match("/room") === null) {
-            navigate("/profile");
-        } else {
+        if (location.pathname.match("/room") !== null) {
             window.alert("If you want to access Profile, please click on the Leave button.");
+        } else if (location.pathname.match("/matching") !== null) {
+            window.alert("If you want to access Profile, please cancel match.");
+        } else {
+            navigate("/profile");
         }
     };
 
     const handleHome = () => {
-        if (location.pathname.match("/room") === null) {
-            navigate("/home");
-        } else {
+        if (location.pathname.match("/room") !== null) {
             window.alert("If you want to access Home, please click on the Leave button.");
+        } else if (location.pathname.match("/matching") !== null) {
+            window.alert("If you want to access Home, please cancel match.");
+        } else {
+            navigate("/home");
         }
     };
 

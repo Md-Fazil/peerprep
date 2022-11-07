@@ -31,7 +31,7 @@ const SelectDiffcultyPage = () => {
                 value="easy"
                 color="success"
                 size="large"
-                variant="outlined"
+                variant="contained"
                 onClick={clickDifficulty}
             >
                 Easy
@@ -39,11 +39,11 @@ const SelectDiffcultyPage = () => {
             <br></br>
             <br></br>
             <Button
-                style={{ color: "orange", borderColor: "orange" }}
+                style={{ borderColor: "orange", backgroundColor: "orange" }}
                 id="btn-medium"
                 value="medium"
                 size="large"
-                variant="outlined"
+                variant="contained"
                 onClick={clickDifficulty}
             >
                 Medium
@@ -55,7 +55,7 @@ const SelectDiffcultyPage = () => {
                 value="hard"
                 color="error"
                 size="large"
-                variant="outlined"
+                variant="contained"
                 onClick={clickDifficulty}
             >
                 Hard

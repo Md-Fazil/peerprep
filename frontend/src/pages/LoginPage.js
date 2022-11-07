@@ -80,7 +80,10 @@ function LoginPage() {
             alignItems="center"
             minHeight="100vh"
         >
-            <Typography variant={"h3"} marginBottom={"2rem"}>
+            <Typography sx={{fontWeight: 'bold'}} variant={"h1"} marginBottom={"2rem"}>
+                PeerPrep
+            </Typography>
+            <Typography sx={{fontWeight: 'bold'}} variant={"h3"} marginBottom={"2rem"}>
                 Login
             </Typography>
             <TextField
@@ -102,7 +105,7 @@ function LoginPage() {
                 style={{ width: "20%" }}
             />
             <Box display={"flex"} flexDirection={"row"} justifyContent={"flex-end"}>
-                <Button variant={"outlined"} onClick={handleLogin}>
+                <Button variant={"contained"} onClick={handleLogin}>
                     Login
                 </Button>
             </Box>
@@ -110,7 +113,7 @@ function LoginPage() {
             <br></br>
 
             <Box display={"flex"} flexDirection={"row"} justifyContent={"flex-end"}>
-                <Button variant={"outlined"} onClick={handleSignup}>
+                <Button variant={"contained"} onClick={handleSignup}>
                     Not a user? Sign up here!
                 </Button>
             </Box>

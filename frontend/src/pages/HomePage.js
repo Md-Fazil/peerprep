@@ -39,19 +39,20 @@ function HomePage() {
 
     return (
         <Stack padding="10%">
-            <Typography variant="h2" color="inherit" component="div">
+            <Typography variant="h2" component="div">
                 Welcome to PeerPrep.
             </Typography>
+
             <br></br>
-            <Button variant={"outlined"} onClick={goToDifficultyPage}>
+            <Button variant={"contained"} onClick={goToDifficultyPage}>
                 Find a match via Difficulty!
             </Button>
             <br></br>
-            <Button variant={"outlined"} onClick={goToTopicPage}>
+            <Button variant={"contained"} onClick={goToTopicPage}>
                 Find a match via Topic!
             </Button>
             <br></br>
-            <Button color="success" variant={"outlined"} onClick={goToHistoryPage}>
+            <Button color="success" variant={"contained"} onClick={goToHistoryPage}>
                 History of completed questions
             </Button>
         </Stack>
