@@ -50,7 +50,7 @@ function LoginPage() {
                 navigate("/home");
             }
         } catch (err) {
-            setErrorDialog("Ivalid username or password");
+            setErrorDialog(err.response.data.message);
         }
     };
 

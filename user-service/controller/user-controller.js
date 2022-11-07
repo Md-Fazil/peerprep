@@ -37,7 +37,7 @@ export async function loginUser(req, res) {
         }
         const user = await _getUser(username) 
         if (!user) {
-            return res.status(400).json({message: 'User does not exist!'})
+            return res.status(400).json({message: 'Invalid username or password!'})
         }
 
         const matchingPassword = await bcrypt.compare(password, user.password)
@@ -49,7 +49,7 @@ export async function loginUser(req, res) {
             return res.status(200).json({token: token})
         }
         else {
-            return res.status(400).json({message:"Invalid credentials!"})
+            return res.status(400).json({message: "Invalid username or password!"})
         }
     } catch (err) {
         console.log(err)
