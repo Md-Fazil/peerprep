@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 
 let COLLABORATION_SERVICE_ENDPOINT = ''
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.REACT_APP_NODE_ENV === "production") {
     COLLABORATION_SERVICE_ENDPOINT = process.env.REACT_APP_COLLABORATION_SERVICE_CLOUD_ENDPOINT;
 } else {
     COLLABORATION_SERVICE_ENDPOINT = process.env.REACT_APP_COLLABORATION_SERVICE_LOCAL_ENDPOINT;
