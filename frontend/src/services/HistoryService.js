@@ -2,7 +2,7 @@ const axios = require("axios");
 
 let HISTORY_SERVICE_ENDPOINT = ''
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.REACT_APP_NODE_ENV === "production") {
     HISTORY_SERVICE_ENDPOINT = process.env.REACT_APP_HISTORY_SERVICE_CLOUD_ENDPOINT;
 } else {
     HISTORY_SERVICE_ENDPOINT = process.env.REACT_APP_HISTORY_SERVICE_LOCAL_ENDPOINT;
