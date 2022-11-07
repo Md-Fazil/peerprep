@@ -13,6 +13,11 @@ export const chatController = (io, socket) => {
         });
 
         socket.join(room);
+        // Emit to the others in the room that user has joined
+        socket.broadcast.to(room).emit("message", {
+                user: "admin",
+                message: `${user} has joined`,
+        });
         userRoom = room;
     });
 
