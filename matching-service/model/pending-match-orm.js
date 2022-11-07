@@ -56,6 +56,8 @@ export const ormGetMatchWithFilterKey = async (username, inputfilterKey) => {
                             [Op.ne]: username,
                         },
                     },
+                    lock: true,
+                    skipLocked: true,
                 },
                 { transaction: t }
             );
@@ -66,6 +68,8 @@ export const ormGetMatchWithFilterKey = async (username, inputfilterKey) => {
                         where: {
                             username: match.dataValues.username,
                         },
+                        lock: true,
+                        skipLocked: true,
                     },
                     { transaction: t }
                 );
