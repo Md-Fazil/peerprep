@@ -43,16 +43,13 @@ function HomePage() {
                 Welcome to PeerPrep.
             </Typography>
 
-            <br></br>
-            <Button variant={"contained"} onClick={goToDifficultyPage}>
+            <Button style={{margin:"2%", fontWeight:"bold"}} variant={"contained"} onClick={goToDifficultyPage}>
                 Find a match via Difficulty!
             </Button>
-            <br></br>
-            <Button variant={"contained"} onClick={goToTopicPage}>
+            <Button style={{margin:"2%", fontWeight:"bold"}} variant={"contained"} onClick={goToTopicPage}>
                 Find a match via Topic!
             </Button>
-            <br></br>
-            <Button color="success" variant={"contained"} onClick={goToHistoryPage}>
+            <Button style={{margin:"2%", fontWeight:"bold"}} color="success" variant={"contained"} onClick={goToHistoryPage}>
                 History of completed questions
             </Button>
         </Stack>

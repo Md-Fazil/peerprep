@@ -42,7 +42,7 @@ function App() {
                     style={{
                         backgroundImage: "url(/blue_background.jpeg)",
                         backgroundSize: "cover",
-                        height: "800px",
+                        height: "1000px",
                     }}
                 >
                     <Box display={"flex"} flexDirection={"column"}>

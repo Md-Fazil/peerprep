@@ -98,7 +98,7 @@ function HistoryPage() {
                                         })}
                                     </TableCell>
                                     <TableCell align="right">
-                                        <Button variant="outlined" onClick={() => viewQuestion(qn)}>
+                                        <Button style={{fontWeight:"bold"}} variant="contained" onClick={() => viewQuestion(qn)}>
                                             View Question
                                         </Button>
                                     </TableCell>
@@ -132,8 +132,7 @@ function HistoryPage() {
             <Typography variant="h5" component="div">
                 Start completing some questions!
             </Typography>
-            <br></br>
-            <Button variant="contained" color="success" onClick={() => navigate("/home")}>
+            <Button style={{marginTop:"3%", fontWeight:"bold"}} variant="contained" color="success" onClick={() => navigate("/home")}>
                 Return back to Home
             </Button>
         </Box>

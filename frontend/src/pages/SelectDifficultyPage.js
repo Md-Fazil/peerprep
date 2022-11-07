@@ -25,8 +25,9 @@ const SelectDiffcultyPage = () => {
     return (
         <Stack padding="5%">
             <Typography variant="h2">Select Difficulty</Typography>
-            <br></br>
+
             <Button
+                style={{ margin: "2%", fontWeight: "bold" }}
                 id="btn-easy"
                 value="easy"
                 color="success"
@@ -36,10 +37,14 @@ const SelectDiffcultyPage = () => {
             >
                 Easy
             </Button>
-            <br></br>
-            <br></br>
+
             <Button
-                style={{ borderColor: "orange", backgroundColor: "orange" }}
+                style={{
+                    borderColor: "orange",
+                    backgroundColor: "orange",
+                    margin: "2%",
+                    fontWeight: "bold",
+                }}
                 id="btn-medium"
                 value="medium"
                 size="large"
@@ -48,9 +53,9 @@ const SelectDiffcultyPage = () => {
             >
                 Medium
             </Button>
-            <br></br>
-            <br></br>
+
             <Button
+                style={{ margin: "2%", fontWeight: "bold" }}
                 id="btn-hard"
                 value="hard"
                 color="error"

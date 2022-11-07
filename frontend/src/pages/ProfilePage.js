@@ -108,19 +108,16 @@ function ProfilePage() {
                 <Typography variant="h2" component="div">
                     Profile of {user.username}
                 </Typography>
-                <br></br>
-                <br></br>
-                <Button variant={"contained"} style={{ color: "red" }} onClick={handleDelete}>
+    
+                <Button variant={"contained"} style={{ color: "red", margin:"2%", fontWeight:"bold"}} onClick={handleDelete}>
                     Delete Account
                 </Button>
-                <br></br>
-                <br></br>
-                <Button variant={"contained"} onClick={openPasswordDialog}>
+   
+                <Button style={{margin:"2%", fontWeight:"bold"}} variant={"contained"} onClick={openPasswordDialog}>
                     Change Password
                 </Button>
-                <br></br>
-                <br></br>
-                <Button variant={"contained"} color="error" onClick={handleLogout}>
+   
+                <Button style={{margin:"2%", fontWeight:"bold"}} variant={"contained"} color="error" onClick={handleLogout}>
                     Logout
                 </Button>
 

@@ -92,13 +92,12 @@ function SignupPage() {
                 style={{ width: "20%" }}
             />
             <Box display={"flex"} flexDirection={"row"} justifyContent={"flex-end"}>
-                <Button variant={"contained"} onClick={handleSignup}>
+                <Button style={{margin:"5%", fontWeight:"bold"}} variant={"contained"} onClick={handleSignup}>
                     Sign up
                 </Button>
             </Box>
-            <br></br>
             <Box display={"flex"} flexDirection={"row"} justifyContent={"flex-end"}>
-                <Button variant={"contained"} onClick={handleLogin}>
+                <Button style={{margin:"5%", fontWeight:"bold"}} variant={"contained"} onClick={handleLogin}>
                     Already an user? Sign in here!
                 </Button>
             </Box>

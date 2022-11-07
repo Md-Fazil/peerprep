@@ -50,12 +50,8 @@ function CollaborationPage() {
         window.history.pushState(null, null, window.location.pathname);
         window.addEventListener("popstate", onBackButtonEvent);
 
-        // close tab
-        window.addEventListener('unload', handleLeave);
-
         return () => {
             window.removeEventListener("popstate", onBackButtonEvent);
-            window.removeEventListener('unload', handleLeave);
         };
     }, []);
 
