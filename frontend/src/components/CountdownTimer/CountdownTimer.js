@@ -23,7 +23,7 @@ const CountdownTimer = ({ interval, timerFinishedCallback }) => {
         <CountdownCircleTimer
             isPlaying
             duration={interval}
-            colors={["#7F7FD5", "#86A8E7", "#91EAE4"]}
+            colors={['#39C700', '#EBFA00', '#FA0000']}
             size={300}
             colorsTime={colorsTime}
             onComplete={() => timerFinishedCallback()}

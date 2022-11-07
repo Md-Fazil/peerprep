@@ -17,15 +17,13 @@ import { UserContext } from "../contexts/UserContext";
 import { useMatchingService } from "../hooks/useMatchingService";
 
 // The countdown timer interval in seconds
-const TIMER_INTERVAL = 5;
+const TIMER_INTERVAL = 30;
 
 const MatchingPage = () => {
     const navigate = useNavigate();
-    const { findMatch, failMatch, disconnect, matchState } = useMatchingService(
-        {
-            enabled: true,
-        }
-    );
+    const { findMatch, failMatch, disconnect, matchState } = useMatchingService({
+        enabled: true,
+    });
     const { user, setUser } = useContext(UserContext);
 
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -71,11 +69,7 @@ const MatchingPage = () => {
     }, [user]);
 
     useEffect(() => {
-        if (
-            matchState.isSuccess &&
-            matchState.roomId &&
-            matchState.partnerUsername
-        ) {
+        if (matchState.isSuccess && matchState.roomId && matchState.partnerUsername) {
             setUser((prevState) => {
                 return {
                     ...prevState,
@@ -104,24 +98,22 @@ const MatchingPage = () => {
 
     return (
         <Container>
-            <Box
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                minHeight="50vh"
-            >
-                <Stack
-                    justifyContent="center"
-                    alignItems="center"
-                    padding="1rem"
-                >
+            <Box display="flex" justifyContent="center" alignItems="center" minHeight="50vh">
+                <Stack justifyContent="center" alignItems="center" padding="1rem">
+                    <br></br>
                     <CountdownTimer
                         interval={TIMER_INTERVAL}
                         timerFinishedCallback={handleTimeout}
                     />
+                    <br></br>
                     <Typography variant="h5" padding="1rem">
                         Please wait till we find you a match...
                     </Typography>
+
+                    <br></br>
+                    <Button variant="contained" color="error" onClick={() => navigate("/home")}>
+                        Cancel Match
+                    </Button>
                 </Stack>
             </Box>
 
@@ -132,9 +124,7 @@ const MatchingPage = () => {
                 </DialogContent>
                 <DialogActions>
                     {matchState.hasFailed && (
-                        <Button onClick={closeFailDialog}>
-                            Return to Home
-                        </Button>
+                        <Button onClick={closeFailDialog}>Return to Home</Button>
                     )}
                 </DialogActions>
             </Dialog>

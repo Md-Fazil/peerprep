@@ -49,6 +49,7 @@ function CollaborationPage() {
         // back-button
         window.history.pushState(null, null, window.location.pathname);
         window.addEventListener("popstate", onBackButtonEvent);
+
         return () => {
             window.removeEventListener("popstate", onBackButtonEvent);
         };
@@ -102,17 +103,27 @@ function CollaborationPage() {
         user && (
             <Box padding="1%">
                 <Grid container justifyContent="end" alignItems="center">
-                    <Button variant="outlined" color="success" onClick={handleMarkQn}>
+                    <Button
+                        style={{ marginRight: "5px" }}
+                        variant="contained"
+                        color="success"
+                        onClick={handleMarkQn}
+                    >
                         Mark Question as Done
                     </Button>
 
-                    <Button variant="outlined" color="error" onClick={handleLeave}>
+                    <Button variant="contained" color="error" onClick={handleLeave}>
                         Leave
                     </Button>
                 </Grid>
 
                 <Grid container direction="row" justifyContent="center" alignItems="stretch">
-                    <Grid item={true} xs={4} padding="1%">
+                    <Grid
+                        sx={{ backgroundColor: "black", borderRadius: "8px" }}
+                        item={true}
+                        xs={4}
+                        padding="1%"
+                    >
                         <Typography variant="h4">{question.title}</Typography>
                         {question.difficulty === "easy" && (
                             <Typography variant="h6" style={{ color: "green" }}>
@@ -138,9 +149,7 @@ function CollaborationPage() {
                     </Grid>
 
                     <Grid item={true} xs={3} padding="1%">
-                        <Typography variant="h4">Chat</Typography>
-                        <br></br>
-                        <div style={{ position: "relative", height: "600px" }}>
+                        <div style={{ position: "relative", height: "600px", width: "105%" }}>
                             <Chat></Chat>
                         </div>
                     </Grid>
