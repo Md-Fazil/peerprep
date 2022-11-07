@@ -16,11 +16,13 @@ import {
     Paper,
 } from "@mui/material";
 import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { getUserQuestionHistory } from "../services/HistoryService";
 import { UserContext } from "../contexts/UserContext";
 
 function HistoryPage() {
+    const navigate = useNavigate();
     const { user, setUser } = useContext(UserContext);
     const [questions, setQuestions] = useState([]);
 
@@ -52,7 +54,7 @@ function HistoryPage() {
     if (questions.length > 0) {
         return (
             <Box padding="5%">
-                <Typography variant="h2" color="inherit" component="div">
+                <Typography variant="h2" component="div">
                     History
                 </Typography>
                 <br></br>
@@ -76,13 +78,19 @@ function HistoryPage() {
                                     <TableCell align="center">{qn.title}</TableCell>
                                     <TableCell align="center">{qn.topic}</TableCell>
                                     {qn.difficulty === "easy" && (
-                                        <TableCell style={{ color: "green" }} align="center">Easy</TableCell>
+                                        <TableCell style={{ color: "green" }} align="center">
+                                            Easy
+                                        </TableCell>
                                     )}
                                     {qn.difficulty === "medium" && (
-                                        <TableCell style={{ color: "orange" }} align="center">Medium</TableCell>
+                                        <TableCell style={{ color: "orange" }} align="center">
+                                            Medium
+                                        </TableCell>
                                     )}
                                     {qn.difficulty === "hard" && (
-                                        <TableCell style={{ color: "red" }} align="center">Hard</TableCell>
+                                        <TableCell style={{ color: "red" }} align="center">
+                                            Hard
+                                        </TableCell>
                                     )}
                                     <TableCell align="right">
                                         {new Date(qn.lastAttempt).toLocaleString("en-GB", {
@@ -90,7 +98,7 @@ function HistoryPage() {
                                         })}
                                     </TableCell>
                                     <TableCell align="right">
-                                        <Button variant="outlined" onClick={() => viewQuestion(qn)}>
+                                        <Button style={{fontWeight:"bold"}} variant="contained" onClick={() => viewQuestion(qn)}>
                                             View Question
                                         </Button>
                                     </TableCell>
@@ -114,13 +122,19 @@ function HistoryPage() {
 
     return (
         <Box padding="5%">
-            <Typography variant="h2" color="inherit" component="div">
+            <Typography variant="h2" component="div">
                 History
             </Typography>
             <br></br>
-            <Typography variant="h5" color="inherit" component="div">
-                History is empty :( start completing some questions!
+            <Typography variant="h5" component="div">
+                History is empty :(
             </Typography>
+            <Typography variant="h5" component="div">
+                Start completing some questions!
+            </Typography>
+            <Button style={{marginTop:"3%", fontWeight:"bold"}} variant="contained" color="success" onClick={() => navigate("/home")}>
+                Return back to Home
+            </Button>
         </Box>
     );
 }

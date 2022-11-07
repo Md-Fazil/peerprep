@@ -25,37 +25,42 @@ const SelectDiffcultyPage = () => {
     return (
         <Stack padding="5%">
             <Typography variant="h2">Select Difficulty</Typography>
-            <br></br>
+
             <Button
+                style={{ margin: "2%", fontWeight: "bold" }}
                 id="btn-easy"
                 value="easy"
                 color="success"
                 size="large"
-                variant="outlined"
+                variant="contained"
                 onClick={clickDifficulty}
             >
                 Easy
             </Button>
-            <br></br>
-            <br></br>
+
             <Button
-                style={{ color: "orange", borderColor: "orange" }}
+                style={{
+                    borderColor: "orange",
+                    backgroundColor: "orange",
+                    margin: "2%",
+                    fontWeight: "bold",
+                }}
                 id="btn-medium"
                 value="medium"
                 size="large"
-                variant="outlined"
+                variant="contained"
                 onClick={clickDifficulty}
             >
                 Medium
             </Button>
-            <br></br>
-            <br></br>
+
             <Button
+                style={{ margin: "2%", fontWeight: "bold" }}
                 id="btn-hard"
                 value="hard"
                 color="error"
                 size="large"
-                variant="outlined"
+                variant="contained"
                 onClick={clickDifficulty}
             >
                 Hard

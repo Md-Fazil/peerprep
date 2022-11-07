@@ -1,4 +1,4 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography, Grid } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
@@ -14,7 +14,7 @@ const SelectTopicPage = () => {
         setUser((prevState) => {
             return {
                 ...prevState,
-                topic: e.currentTarget.textContent
+                topic: e.currentTarget.textContent,
             };
         });
         navigate("/matching");
@@ -36,12 +36,17 @@ const SelectTopicPage = () => {
     return (
         <Stack padding="5%">
             <Typography variant="h2">Select Topic</Typography>
-            {topics.map((topic, i) => (
-                <div key={i}>
-                    <br></br>
-                    <Button variant={"outlined"} onClick={clickTopic}>{topic}</Button>
-                </div>
-            ))}
+            <br></br>
+            <Grid container columnSpacing={2}>
+                {topics.map((topic, i) => (
+                    <Grid key={i} item>
+                        <br></br>
+                        <Button variant={"contained"} onClick={clickTopic}>
+                            {topic}
+                        </Button>
+                    </Grid>
+                ))}
+            </Grid>
         </Stack>
     );
 };
