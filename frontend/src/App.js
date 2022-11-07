@@ -36,15 +36,14 @@ function App() {
     const jwtValue = useMemo(() => ({ jwt, setJwt }), [jwt, setJwt]);
 
     return (
-        <div className="App">
+        <div>
             <ThemeProvider theme={darkTheme}>
-                <div
-                    style={{
-                        backgroundImage: "url(/blue_background.jpeg)",
-                        backgroundSize: "cover",
-                        height: "1000px",
-                    }}
-                >
+                <div className="App" style={{
+                    backgroundImage: "url(/blue_background.jpeg)",
+                    backgroundSize: "cover",
+                    width: '100vw',
+                    height: '100vh',
+                }}>
                     <Box display={"flex"} flexDirection={"column"}>
                         <Router>
                             <UserContext.Provider value={userValue}>
