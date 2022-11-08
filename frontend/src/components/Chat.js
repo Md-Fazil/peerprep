@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useChatService } from "../hooks/useChatService";
 
-import '../chat_style/main.scss'
+import "../chat_style/main.scss";
 import {
     MainContainer,
     ChatContainer,
@@ -44,9 +44,26 @@ const Chat = () => {
                                     sentTime: "just now",
                                     sender: message.user,
                                     direction:
-                                        message.user === chatState.name ? "outgoing" : "incoming",
+                                        message.user === chatState.name
+                                            ? "outgoing"
+                                            : message.user === "admin"
+                                            ? "undefined"
+                                            : "incoming",
                                 }}
                             />
+                            {message.user === "admin" ? (
+                                <Message.Footer sender="Admin" />
+                            ) : (
+                                <>
+                                    {message.user === chatState.name ? (
+                                        <div style={{ display: 'flex', justifyContent:'flex-end' }}>
+                                            <Message.Footer sender={message.user} />
+                                        </div>
+                                    ) : (
+                                        <Message.Footer sender={message.user} />
+                                    )}
+                                </>
+                            )}
                         </div>
                     ))}
                 </MessageList>

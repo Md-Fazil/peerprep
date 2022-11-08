@@ -23,7 +23,7 @@ const SelectDiffcultyPage = () => {
     }, [user]);
 
     return (
-        <Stack padding="5%">
+        <Stack padding="10%">
             <Typography variant="h2">Select Difficulty</Typography>
 
             <Button
