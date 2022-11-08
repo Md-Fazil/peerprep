@@ -235,6 +235,7 @@ const Editor = () => {
                 showGutter={true}
                 highlightActiveLine={true}
                 width="100%"
+                height= '65vh'
                 setOptions={{
                     enableBasicAutocompletion: editorState.autocomplete,
                     enableLiveAutocompletion: editorState.autocomplete,
