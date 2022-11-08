@@ -96,7 +96,7 @@ function ProfilePage() {
     return (
         user && (
             <Stack padding="10%">
-                <Typography variant="h2" component="div">
+                <Typography variant="h2" component="div" align="center">
                     Profile of {user.username}
                 </Typography>
 

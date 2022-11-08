@@ -57,7 +57,7 @@ function HistoryPage() {
     if (!hasLoaded) {
         return (
             <Box padding="10%">
-                <Typography variant="h2" component="div">
+                <Typography variant="h2" component="div" align="center">
                     History
                 </Typography>
                 <div style={{ margin:"10%", display: "flex", justifyContent: "center" }}>
@@ -70,7 +70,7 @@ function HistoryPage() {
     if (questions.length > 0) {
         return (
             <Box padding="10%">
-                <Typography variant="h2" component="div">
+                <Typography variant="h2" component="div" align="center">
                     History
                 </Typography>
                 <br></br>
@@ -81,8 +81,8 @@ function HistoryPage() {
                                 <TableCell align="center">Title</TableCell>
                                 <TableCell align="center">Topic</TableCell>
                                 <TableCell align="center">Difficulty</TableCell>
-                                <TableCell align="right">Last Attempt</TableCell>
-                                <TableCell align="right"></TableCell>
+                                <TableCell align="center">Last Attempt</TableCell>
+                                <TableCell align="center"></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -108,12 +108,12 @@ function HistoryPage() {
                                             Hard
                                         </TableCell>
                                     )}
-                                    <TableCell align="right">
+                                    <TableCell align="center">
                                         {new Date(qn.lastAttempt).toLocaleString("en-GB", {
                                             timeZone: "Asia/Singapore",
                                         })}
                                     </TableCell>
-                                    <TableCell align="right">
+                                    <TableCell align="center">
                                         <Button
                                             style={{ fontWeight: "bold" }}
                                             variant="contained"
@@ -142,18 +142,18 @@ function HistoryPage() {
 
     return (
         <Box padding="10%">
-            <Typography variant="h2" component="div">
+            <Typography variant="h2" component="div" align="center">
                 History
             </Typography>
             <br></br>
-            <Typography variant="h5" component="div">
+            <Typography variant="h5" component="div" align="center">
                 History is empty :(
             </Typography>
-            <Typography variant="h5" component="div">
+            <Typography variant="h5" component="div" align="center">
                 Start completing some questions!
             </Typography>
             <Button
-                style={{ marginTop: "3%", fontWeight: "bold" }}
+                style={{ marginTop: "5%", fontWeight: "bold", margin: '0 auto', display: "flex" }}
                 variant="contained"
                 color="success"
                 size="large"
