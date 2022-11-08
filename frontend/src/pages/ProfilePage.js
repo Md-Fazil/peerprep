@@ -15,6 +15,8 @@ import { UserContext } from "../contexts/UserContext";
 import { JwtContext } from "../contexts/JwtContext";
 import { changePassword, deleteUser } from "../services/UserService";
 import { STATUS_CODE_SUCCESS } from "../constants";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import PasswordIcon from '@mui/icons-material/Password';
 
 function ProfilePage() {
     let navigate = useNavigate();
@@ -93,7 +95,7 @@ function ProfilePage() {
 
     return (
         user && (
-            <Stack padding="5%">
+            <Stack padding="10%">
                 <Typography variant="h2" component="div">
                     Profile of {user.username}
                 </Typography>
@@ -101,18 +103,22 @@ function ProfilePage() {
                 <Button
                     variant={"contained"}
                     color="error"
+                    size="large"
                     style={{ margin: "2%", fontWeight: "bold" }}
                     onClick={handleDelete}
                 >
                     Delete Account
+                    <DeleteForeverIcon style={{marginLeft:"2%"}} fontSize="large"></DeleteForeverIcon>
                 </Button>
 
                 <Button
                     style={{ margin: "2%", fontWeight: "bold" }}
                     variant={"contained"}
+                    size="large"
                     onClick={openPasswordDialog}
                 >
                     Change Password
+                    <PasswordIcon style={{marginLeft:"2%"}} fontSize="large"></PasswordIcon>
                 </Button>
 
                 <Dialog open={isPasswordDialogOpen} onClose={closeDialog} fullWidth maxWidth="xs">

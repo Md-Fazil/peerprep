@@ -37,7 +37,7 @@ const SelectTopicPage = () => {
 
     if (!hasLoaded) {
         return (
-            <Stack padding="5%">
+            <Stack padding="10%">
                 <Typography variant="h2">Select Topic</Typography>
                 <div style={{ margin:"10%", display: "flex", justifyContent: "center" }}>
                     <CircularProgress size="150px" />
@@ -47,7 +47,7 @@ const SelectTopicPage = () => {
     }
 
     return (
-        <Stack padding="5%">
+        <Stack padding="10%">
             <Typography variant="h2">Select Topic</Typography>
             <br></br>
             <Grid container columnSpacing={2}>

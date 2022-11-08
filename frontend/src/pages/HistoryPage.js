@@ -56,7 +56,7 @@ function HistoryPage() {
 
     if (!hasLoaded) {
         return (
-            <Box padding="5%">
+            <Box padding="10%">
                 <Typography variant="h2" component="div">
                     History
                 </Typography>
@@ -69,7 +69,7 @@ function HistoryPage() {
 
     if (questions.length > 0) {
         return (
-            <Box padding="5%">
+            <Box padding="10%">
                 <Typography variant="h2" component="div">
                     History
                 </Typography>
@@ -141,7 +141,7 @@ function HistoryPage() {
     }
 
     return (
-        <Box padding="5%">
+        <Box padding="10%">
             <Typography variant="h2" component="div">
                 History
             </Typography>
@@ -156,6 +156,7 @@ function HistoryPage() {
                 style={{ marginTop: "3%", fontWeight: "bold" }}
                 variant="contained"
                 color="success"
+                size="large"
                 onClick={() => navigate("/home")}
             >
                 Return back to Home
