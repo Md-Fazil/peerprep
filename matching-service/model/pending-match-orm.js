@@ -50,6 +50,7 @@ export const ormGetMatchWithFilterKey = async (
     try {
         const filterKey = inputfilterKey.toLowerCase();
         const result = await sequelize.transaction(async (t) => {
+            console.log("SELECTION_TRASACTION----------", username, filterKey)
             const match = await PendingMatch.findOne(
                 {
                     attributes: ["username", "socketId"],
@@ -133,6 +134,7 @@ export const ormIsPendingMatchExisting = async (socketId) => {
 export const ormDeleteIfPedningMatchExists = async (socketId) => {
     try {
         const result = await sequelize.transaction(async (t) => {
+            console.log("SELECTION_TRASACTION_TIMEOUT----------", username, filterKey)
             const match = await PendingMatch.findOne(
                 {
                     where: {
