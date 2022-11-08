@@ -42,8 +42,8 @@ function HomePage() {
 
     return (
         <Stack padding="10%">
-            <Typography variant="h2" component="div">
-                Welcome to PeerPrep.
+            <Typography variant="h2" align="center">
+                Welcome to PeerPrep
             </Typography>
 
             <Button style={{margin:"2%", fontWeight:"bold"}} variant={"contained"} size="large" onClick={goToDifficultyPage}>
