@@ -104,7 +104,7 @@ const Header = () => {
                         <Button
                             color="inherit"
                             component="div"
-                            sx={{ marginRight: "85%", textTransform: "none" }}
+                            sx={{ marginRight: "90%", textTransform: "none" }}
                             onClick={handleHome}
                         >
                             <Typography variant="h6">PeerPrep</Typography>

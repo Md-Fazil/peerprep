@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography, CircularProgress, Stack } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,7 @@ function CollaborationPage() {
     const [openAddQnToast, setOpenAddQnToast] = useState(false);
     const [openReconnectToast, setOpenReconnectToast] = useState(false);
     const [finishStatus, setfinishStatus] = useState(false);
+    const [hasLoadedQn, setHasLoadedQn] = useState(false);
 
     const onBackButtonEvent = (e) => {
         e.preventDefault();
@@ -61,6 +62,7 @@ function CollaborationPage() {
         } else if (user.difficultyLevel !== null) {
             await getQuestion(user.room, user.difficultyLevel).then((qn) => setQuestion(qn));
         }
+        setHasLoadedQn(true);
     }
 
     useEffect(() => {
@@ -124,24 +126,41 @@ function CollaborationPage() {
                         xs={4}
                         padding="1%"
                     >
-                        <Typography variant="h4">{question.title}</Typography>
-                        {question.difficulty === "easy" && (
-                            <Typography variant="h6" style={{ color: "green" }}>
-                                Difficulty: Easy
-                            </Typography>
+                        {!hasLoadedQn ? (
+                            <Stack padding="5%">
+                                <Typography variant="h4">Loading Question...</Typography>
+                                <div
+                                    style={{
+                                        marginTop: "25%",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                    }}
+                                >
+                                    <CircularProgress size="100px" />
+                                </div>
+                            </Stack>
+                        ) : (
+                            <>
+                                <Typography variant="h4">{question.title}</Typography>
+                                {question.difficulty === "easy" && (
+                                    <Typography variant="h6" style={{ color: "green" }}>
+                                        Difficulty: Easy
+                                    </Typography>
+                                )}
+                                {question.difficulty === "medium" && (
+                                    <Typography variant="h6" style={{ color: "orange" }}>
+                                        Difficulty: Medium
+                                    </Typography>
+                                )}
+                                {question.difficulty === "hard" && (
+                                    <Typography variant="h6" style={{ color: "red" }}>
+                                        Difficulty: Hard
+                                    </Typography>
+                                )}
+                                <br></br>
+                                <Typography variant="body1">{question.question}</Typography>
+                            </>
                         )}
-                        {question.difficulty === "medium" && (
-                            <Typography variant="h6" style={{ color: "orange" }}>
-                                Difficulty: Medium
-                            </Typography>
-                        )}
-                        {question.difficulty === "hard" && (
-                            <Typography variant="h6" style={{ color: "red" }}>
-                                Difficulty: Hard
-                            </Typography>
-                        )}
-                        <br></br>
-                        <Typography variant="body1">{question.question}</Typography>
                     </Grid>
 
                     <Grid item={true} xs={5} padding="1%">
