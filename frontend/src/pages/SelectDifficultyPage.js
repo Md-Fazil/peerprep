@@ -32,7 +32,7 @@ const SelectDiffcultyPage = () => {
 
     return (
         <Stack padding="10%">
-            <Typography variant="h2">Select Difficulty</Typography>
+            <Typography variant="h2" align="center">Select Difficulty</Typography>
 
             <Button
                 style={{ margin: "2%", fontWeight: "bold" }}
