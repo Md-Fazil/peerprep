@@ -122,7 +122,7 @@ function CollaborationPage() {
 
                 <Grid container direction="row" justifyContent="center" alignItems="stretch">
                     <Grid
-                        sx={{ backgroundColor: "#2D2D2D", borderRadius: "8px" }}
+                        sx={{ backgroundColor: "#2D2D2D", borderRadius: "8px", height: '80vh' }}
                         item={true}
                         xs={4}
                         padding="1%"
@@ -169,7 +169,7 @@ function CollaborationPage() {
                     </Grid>
 
                     <Grid item={true} xs={3} padding="1%">
-                        <div style={{ position: "relative", height: "600px", width: "105%" }}>
+                        <div style={{ position: "relative", height: '78vh', width: "105%" }}>
                             <Chat></Chat>
                         </div>
                     </Grid>
