@@ -22,10 +22,15 @@ const SelectTopicPage = () => {
     };
 
     useEffect(() => {
-        localStorage.setItem("user", JSON.stringify(user));
+        if (user) {
+            localStorage.setItem("user", JSON.stringify(user));
+        }
     }, [user]);
 
     useEffect(() => {
+        if (!user) {
+            setUser(JSON.parse(localStorage.getItem("user")));
+        }
         fetchTopics();
         console.log("fetching topics...");
     }, []);
