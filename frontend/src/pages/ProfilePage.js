@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { JwtContext } from "../contexts/JwtContext";
-import { logoutUser, changePassword, deleteUser } from "../services/UserService";
+import { changePassword, deleteUser } from "../services/UserService";
 import { STATUS_CODE_SUCCESS } from "../constants";
 
 function ProfilePage() {
@@ -62,17 +62,6 @@ function ProfilePage() {
         }
     };
 
-    const handleLogout = async () => {
-        try {
-            const res = await logoutUser({ username: user.username }, jwt);
-            if (res && res.status === STATUS_CODE_SUCCESS) {
-                cleanDataAndRedirect();
-            }
-        } catch (err) {
-            setErrorDialog(err.response.data.message);
-        }
-    };
-
     const cleanDataAndRedirect = () => {
         setUser(null);
         setJwt(null);
@@ -108,17 +97,22 @@ function ProfilePage() {
                 <Typography variant="h2" component="div">
                     Profile of {user.username}
                 </Typography>
-    
-                <Button variant={"contained"} style={{ color: "red", margin:"2%", fontWeight:"bold"}} onClick={handleDelete}>
+
+                <Button
+                    variant={"contained"}
+                    color="error"
+                    style={{ margin: "2%", fontWeight: "bold" }}
+                    onClick={handleDelete}
+                >
                     Delete Account
                 </Button>
-   
-                <Button style={{margin:"2%", fontWeight:"bold"}} variant={"contained"} onClick={openPasswordDialog}>
+
+                <Button
+                    style={{ margin: "2%", fontWeight: "bold" }}
+                    variant={"contained"}
+                    onClick={openPasswordDialog}
+                >
                     Change Password
-                </Button>
-   
-                <Button style={{margin:"2%", fontWeight:"bold"}} variant={"contained"} color="error" onClick={handleLogout}>
-                    Logout
                 </Button>
 
                 <Dialog open={isPasswordDialogOpen} onClose={closeDialog} fullWidth maxWidth="xs">

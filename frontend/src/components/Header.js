@@ -1,9 +1,33 @@
-import { Avatar, AppBar, Box, Toolbar, Button, Typography } from "@mui/material";
-import { useContext, useEffect } from "react";
+import {
+    Avatar,
+    AppBar,
+    Box,
+    Toolbar,
+    Button,
+    Typography,
+    Menu,
+    Divider,
+    ListItemIcon,
+    MenuItem,
+    Tooltip,
+    IconButton,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+} from "@mui/material";
+import Logout from "@mui/icons-material/Logout";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import { JwtContext } from "../contexts/JwtContext";
+import { logoutUser } from "../services/UserService";
+import { STATUS_CODE_SUCCESS } from "../constants";
 
 const Header = () => {
+    const { jwt, setJwt } = useContext(JwtContext);
+
     useEffect(() => {
         if (!user) {
             setUser(JSON.parse(localStorage.getItem("user")));
@@ -35,29 +59,136 @@ const Header = () => {
         }
     };
 
+    const handleLogout = async () => {
+        try {
+            const res = await logoutUser({ username: user.username }, jwt);
+            if (res && res.status === STATUS_CODE_SUCCESS) {
+                cleanDataAndRedirect();
+            }
+        } catch (err) {
+            setErrorDialog(err.response.data.message);
+        }
+    };
+
+    const cleanDataAndRedirect = () => {
+        setUser(null);
+        setJwt(null);
+        localStorage.removeItem("user");
+        navigate("/login");
+    };
+
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [dialogTitle, setDialogTitle] = useState("");
+    const [dialogMsg, setDialogMsg] = useState("");
+    const setErrorDialog = (msg) => {
+        setIsDialogOpen(true);
+        setDialogTitle("Error");
+        setDialogMsg(msg);
+    };
+    const closeDialog = () => setIsDialogOpen(false);
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        PeerPrep
-                    </Typography>
-
                     {user && (
-                        <Button color="inherit" onClick={handleHome}>
-                            Home
+                        <Button
+                            color="inherit"
+                            component="div"
+                            sx={{ marginRight: "85%", textTransform: "none" }}
+                            onClick={handleHome}
+                        >
+                            <Typography variant="h6">PeerPrep</Typography>
                         </Button>
                     )}
 
-                    {user && (<Avatar src="/../../public/avatar-person.svg" />)}
+                    {user && (
+                        <Tooltip title="Account settings">
+                            <IconButton
+                                onClick={handleClick}
+                                size="medium"
+                                sx={{ ml: 2 }}
+                                aria-controls={open ? "account-menu" : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open ? "true" : undefined}
+                            >
+                                <Avatar
+                                    sx={{ width: 32, height: 32 }}
+                                    src="/../../public/avatar-person.svg"
+                                />
+                            </IconButton>
+                        </Tooltip>
+                    )}
 
                     {user && (
-                        <Button color="inherit" onClick={handleProfile}>
-                            {user.username}
-                        </Button>
+                        <Menu
+                            anchorEl={anchorEl}
+                            id="account-menu"
+                            open={open}
+                            onClose={handleClose}
+                            onClick={handleClose}
+                            PaperProps={{
+                                elevation: 0,
+                                sx: {
+                                    overflow: "visible",
+                                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                                    mt: 1.5,
+                                    "& .MuiAvatar-root": {
+                                        width: 32,
+                                        height: 32,
+                                        ml: -0.5,
+                                        mr: 1,
+                                    },
+                                    "&:before": {
+                                        content: '""',
+                                        display: "block",
+                                        position: "absolute",
+                                        top: 0,
+                                        right: 14,
+                                        width: 10,
+                                        height: 10,
+                                        bgcolor: "background.paper",
+                                        transform: "translateY(-50%) rotate(45deg)",
+                                        zIndex: 0,
+                                    },
+                                },
+                            }}
+                            transformOrigin={{ horizontal: "right", vertical: "top" }}
+                            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+                        >
+                            <MenuItem onClick={handleProfile}>
+                                <Avatar /> {user.username}
+                            </MenuItem>
+                            <Divider />
+                            <MenuItem onClick={handleLogout}>
+                                <ListItemIcon>
+                                    <Logout fontSize="small" />
+                                </ListItemIcon>
+                                Logout
+                            </MenuItem>
+                        </Menu>
                     )}
                 </Toolbar>
             </AppBar>
+
+            <Dialog open={isDialogOpen} onClose={closeDialog}>
+                <DialogTitle>{dialogTitle}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>{dialogMsg}</DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={closeDialog}>Done</Button>
+                </DialogActions>
+            </Dialog>
         </Box>
     );
 };
