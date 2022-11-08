@@ -60,13 +60,19 @@ const Header = () => {
     };
 
     const handleLogout = async () => {
-        try {
-            const res = await logoutUser({ username: user.username }, jwt);
-            if (res && res.status === STATUS_CODE_SUCCESS) {
-                cleanDataAndRedirect();
+        if (location.pathname.match("/room") !== null) {
+            window.alert("If you want to Logout, please click on the Leave button.");
+        } else if (location.pathname.match("/matching") !== null) {
+            window.alert("If you want to Logout, please cancel match.");
+        } else {
+            try {
+                const res = await logoutUser({ username: user.username }, jwt);
+                if (res && res.status === STATUS_CODE_SUCCESS) {
+                    cleanDataAndRedirect();
+                }
+            } catch (err) {
+                setErrorDialog(err.response.data.message);
             }
-        } catch (err) {
-            setErrorDialog(err.response.data.message);
         }
     };
 
