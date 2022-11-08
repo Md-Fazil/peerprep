@@ -27,7 +27,7 @@ export const matchController = (io, socket) => {
         }
 
         const { hasFoundMatch, partnerUsername, partnerSocketId } =
-            await findPendingMatch(username, filterKey);
+            await findPendingMatch(username, socket.id, filterKey);
 
         if (hasFoundMatch) {
             await handleMatchSuccess(
@@ -39,16 +39,7 @@ export const matchController = (io, socket) => {
                 filterKey
             );
         } else {
-            const { isCreated, error } = await createPendingMatch(
-                username,
-                socket.id,
-                filterKey
-            );
-            if (isCreated) {
-                handleTimeoutMatchFail(io, socket, username);
-            } else {
-                handleErrorMatchFail(io, socket, error);
-            }
+            handleTimeoutMatchFail(io, socket, username);
         }
     });
 
@@ -81,13 +72,24 @@ const deletePendingMatch = async (socketId) => {
 /**
  * Returns a match with filterKey if exists else return null.
  */
-const findPendingMatch = async (username, filterKey) => {
+const findPendingMatch = async (username, socketId, filterKey) => {
     try {
-        const match = await _getMatchWithFilterKey(username, filterKey);
+        const match = await _getMatchWithFilterKey(
+            username,
+            socketId,
+            filterKey
+        );
+        if (match) {
+            return {
+                hasFoundMatch: true,
+                partnerUsername: match.dataValues.username,
+                partnerSocketId: match.dataValues.socketId,
+            };
+        }
         return {
-            hasFoundMatch: true,
-            partnerUsername: match.dataValues.username,
-            partnerSocketId: match.dataValues.socketId,
+            hasFoundMatch: false,
+            partnerUsername: null,
+            partnerSocketId: null,
         };
     } catch (err) {
         console.log(err);

@@ -42,7 +42,11 @@ export const ormDeletePendingMatch = async (socketId) => {
  * Returns First Pending match with desired filterKey but not equal to the given username
  * and deletes returns the pending match.
  */
-export const ormGetMatchWithFilterKey = async (username, inputfilterKey) => {
+export const ormGetMatchWithFilterKey = async (
+    username,
+    socketId,
+    inputfilterKey
+) => {
     try {
         const filterKey = inputfilterKey.toLowerCase();
         const result = await sequelize.transaction(async (t) => {
@@ -73,8 +77,18 @@ export const ormGetMatchWithFilterKey = async (username, inputfilterKey) => {
                     },
                     { transaction: t }
                 );
+            } else {
+                await PendingMatch.create(
+                    {
+                        username,
+                        socketId,
+                        filterKey,
+                    },
+                    {
+                        transaction: t,
+                    }
+                );
             }
-
             return match;
         });
 
