@@ -489,10 +489,10 @@ $message-outgoing-content-last-border-radius: $message-base-radius 0 $message-ba
 $message-color: $color-text !default;
 $message-bg-color: transparent !default;
 
-$message-header-color: lighten($color-text, 30) !default;
+$message-header-color: $color-white !default;
 $message-header-bg-color: transparent !default;
 
-$message-footer-color: lighten($color-text, 30) !default;
+$message-footer-color: $color-white !default;
 $message-footer-bg-color: transparent !default;
 
 $message-incoming-color: $message-color !default;
@@ -569,7 +569,7 @@ $message-group-outgoing-message-content-last-border-radius: $message-group-messa
 //  Colors
 $message-group-header-color: $color-text-medium !default;
 $message-group-header-bg-color: transparent !default;
-$message-group-footer-color: $color-text-medium !default;
+$message-group-footer-color: $color-white !default;
 $message-group-footer-bg-color: transparent !default;
 $message-group-message-content-bg-color: $color-primary !default;
 
