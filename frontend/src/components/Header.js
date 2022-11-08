@@ -110,7 +110,7 @@ const Header = () => {
                         <Button
                             color="inherit"
                             component="div"
-                            sx={{ marginRight: "90%", textTransform: "none" }}
+                            sx={{ marginLeft:"1px", textTransform: "none" }}
                             onClick={handleHome}
                         >
                             <Typography variant="h6">PeerPrep</Typography>
@@ -122,7 +122,7 @@ const Header = () => {
                             <IconButton
                                 onClick={handleClick}
                                 size="medium"
-                                sx={{ ml: 2 }}
+                                sx={{ ml: 2, marginLeft:"93%" }}
                                 aria-controls={open ? "account-menu" : undefined}
                                 aria-haspopup="true"
                                 aria-expanded={open ? "true" : undefined}
