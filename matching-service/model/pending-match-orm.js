@@ -67,6 +67,7 @@ export const ormGetMatchWithFilterKey = async (
             );
 
             if (match) {
+                console.log("DELETE_TRANSACTION----------", username, filterKey)
                 await PendingMatch.destroy(
                     {
                         where: {
@@ -78,7 +79,7 @@ export const ormGetMatchWithFilterKey = async (
                     { transaction: t }
                 );
             } else {
-                console.log("INSERTION___________", username)
+                console.log("INSERTION_TRASACTION----------", username, filterKey)
                 await PendingMatch.create(
                     {
                         username,
@@ -141,6 +142,7 @@ export const ormDeleteIfPedningMatchExists = async (socketId) => {
                 { transaction: t }
             );
             if (match) {
+                console.log("DELETE_TRANSACTION_TIMEOUT----------", username, filterKey)
                 await PendingMatch.destroy(
                     {
                         where: {
