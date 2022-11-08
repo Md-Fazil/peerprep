@@ -41,6 +41,7 @@ function CollaborationPage() {
             setUser(JSON.parse(localStorage.getItem("user")));
             setQuestion(JSON.parse(localStorage.getItem("question")));
             setOpenReconnectToast(true);
+            setHasLoadedQn(true);
         }
 
         // get question from QuestionService
