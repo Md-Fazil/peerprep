@@ -19,7 +19,15 @@ const SelectDiffcultyPage = () => {
     };
 
     useEffect(() => {
-        localStorage.setItem("user", JSON.stringify(user));
+        if (!user) {
+            setUser(JSON.parse(localStorage.getItem("user")));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (user) {
+            localStorage.setItem("user", JSON.stringify(user));
+        }
     }, [user]);
 
     return (

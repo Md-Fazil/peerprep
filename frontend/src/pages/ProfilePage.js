@@ -101,6 +101,16 @@ function ProfilePage() {
                 </Typography>
 
                 <Button
+                    style={{ margin: "2%", fontWeight: "bold" }}
+                    variant={"contained"}
+                    size="large"
+                    onClick={openPasswordDialog}
+                >
+                    Change Password
+                    <PasswordIcon style={{marginLeft:"2%"}} fontSize="large"></PasswordIcon>
+                </Button>
+
+                <Button
                     variant={"contained"}
                     color="error"
                     size="large"
@@ -109,16 +119,6 @@ function ProfilePage() {
                 >
                     Delete Account
                     <DeleteForeverIcon style={{marginLeft:"2%"}} fontSize="large"></DeleteForeverIcon>
-                </Button>
-
-                <Button
-                    style={{ margin: "2%", fontWeight: "bold" }}
-                    variant={"contained"}
-                    size="large"
-                    onClick={openPasswordDialog}
-                >
-                    Change Password
-                    <PasswordIcon style={{marginLeft:"2%"}} fontSize="large"></PasswordIcon>
                 </Button>
 
                 <Dialog open={isPasswordDialogOpen} onClose={closeDialog} fullWidth maxWidth="xs">
