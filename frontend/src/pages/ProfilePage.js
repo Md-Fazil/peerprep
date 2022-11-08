@@ -13,8 +13,10 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { JwtContext } from "../contexts/JwtContext";
-import { logoutUser, changePassword, deleteUser } from "../services/UserService";
+import { changePassword, deleteUser } from "../services/UserService";
 import { STATUS_CODE_SUCCESS } from "../constants";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import PasswordIcon from '@mui/icons-material/Password';
 
 function ProfilePage() {
     let navigate = useNavigate();
@@ -62,17 +64,6 @@ function ProfilePage() {
         }
     };
 
-    const handleLogout = async () => {
-        try {
-            const res = await logoutUser({ username: user.username }, jwt);
-            if (res && res.status === STATUS_CODE_SUCCESS) {
-                cleanDataAndRedirect();
-            }
-        } catch (err) {
-            setErrorDialog(err.response.data.message);
-        }
-    };
-
     const cleanDataAndRedirect = () => {
         setUser(null);
         setJwt(null);
@@ -104,21 +95,30 @@ function ProfilePage() {
 
     return (
         user && (
-            <Stack padding="5%">
+            <Stack padding="10%">
                 <Typography variant="h2" component="div">
                     Profile of {user.username}
                 </Typography>
-    
-                <Button variant={"contained"} style={{ color: "red", margin:"2%", fontWeight:"bold"}} onClick={handleDelete}>
+
+                <Button
+                    variant={"contained"}
+                    color="error"
+                    size="large"
+                    style={{ margin: "2%", fontWeight: "bold" }}
+                    onClick={handleDelete}
+                >
                     Delete Account
+                    <DeleteForeverIcon style={{marginLeft:"2%"}} fontSize="large"></DeleteForeverIcon>
                 </Button>
-   
-                <Button style={{margin:"2%", fontWeight:"bold"}} variant={"contained"} onClick={openPasswordDialog}>
+
+                <Button
+                    style={{ margin: "2%", fontWeight: "bold" }}
+                    variant={"contained"}
+                    size="large"
+                    onClick={openPasswordDialog}
+                >
                     Change Password
-                </Button>
-   
-                <Button style={{margin:"2%", fontWeight:"bold"}} variant={"contained"} color="error" onClick={handleLogout}>
-                    Logout
+                    <PasswordIcon style={{marginLeft:"2%"}} fontSize="large"></PasswordIcon>
                 </Button>
 
                 <Dialog open={isPasswordDialogOpen} onClose={closeDialog} fullWidth maxWidth="xs">

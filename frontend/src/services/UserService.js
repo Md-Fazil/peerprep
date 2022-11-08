@@ -15,7 +15,6 @@ export async function createUser(data) {
 }
 
 export async function loginUser(data) {
-    console.log(USER_SERVICE_ENDPOINT)
     const res = await axios.post(USER_SERVICE_ENDPOINT + `/login`, data);
     console.log(res);
     return res;

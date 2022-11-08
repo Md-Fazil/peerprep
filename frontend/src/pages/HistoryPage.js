@@ -14,6 +14,7 @@ import {
     TableCell,
     TableBody,
     Paper,
+    CircularProgress,
 } from "@mui/material";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -25,6 +26,7 @@ function HistoryPage() {
     const navigate = useNavigate();
     const { user, setUser } = useContext(UserContext);
     const [questions, setQuestions] = useState([]);
+    const [hasLoaded, setHasLoaded] = useState(false);
 
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [dialogTitle, setDialogTitle] = useState("");
@@ -43,6 +45,7 @@ function HistoryPage() {
 
     async function fetchQuestions() {
         await getUserQuestionHistory(user.username).then((qns) => setQuestions(qns));
+        setHasLoaded(true);
     }
 
     const viewQuestion = (qn) => {
@@ -51,9 +54,22 @@ function HistoryPage() {
         setIsDialogOpen(true);
     };
 
+    if (!hasLoaded) {
+        return (
+            <Box padding="10%">
+                <Typography variant="h2" component="div">
+                    History
+                </Typography>
+                <div style={{ margin:"10%", display: "flex", justifyContent: "center" }}>
+                    <CircularProgress size="150px" />
+                </div>
+            </Box>
+        );
+    }
+
     if (questions.length > 0) {
         return (
-            <Box padding="5%">
+            <Box padding="10%">
                 <Typography variant="h2" component="div">
                     History
                 </Typography>
@@ -98,7 +114,11 @@ function HistoryPage() {
                                         })}
                                     </TableCell>
                                     <TableCell align="right">
-                                        <Button style={{fontWeight:"bold"}} variant="contained" onClick={() => viewQuestion(qn)}>
+                                        <Button
+                                            style={{ fontWeight: "bold" }}
+                                            variant="contained"
+                                            onClick={() => viewQuestion(qn)}
+                                        >
                                             View Question
                                         </Button>
                                     </TableCell>
@@ -121,7 +141,7 @@ function HistoryPage() {
     }
 
     return (
-        <Box padding="5%">
+        <Box padding="10%">
             <Typography variant="h2" component="div">
                 History
             </Typography>
@@ -132,7 +152,13 @@ function HistoryPage() {
             <Typography variant="h5" component="div">
                 Start completing some questions!
             </Typography>
-            <Button style={{marginTop:"3%", fontWeight:"bold"}} variant="contained" color="success" onClick={() => navigate("/home")}>
+            <Button
+                style={{ marginTop: "3%", fontWeight: "bold" }}
+                variant="contained"
+                color="success"
+                size="large"
+                onClick={() => navigate("/home")}
+            >
                 Return back to Home
             </Button>
         </Box>
