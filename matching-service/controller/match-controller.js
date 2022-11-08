@@ -17,6 +17,7 @@ export const matchController = (io, socket) => {
     console.log(`IO: Socket with id: ${socket.id} connected`);
 
     socket.on("findMatch", async ({ username, filterKey }) => {
+        console.log("FINDMATCH--------------------------", username, filterKey)
         if (!username || !filterKey) {
             await handleInvalidMatchFail(
                 io,
