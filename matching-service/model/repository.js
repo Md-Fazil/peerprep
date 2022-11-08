@@ -9,7 +9,8 @@ if (process.env.CLOUD_DB_URL) {
         {
             dialect: "postgres",
             host: process.env.CLOUD_DB_URL,
-            port: process.env.CLOUD_DB_PORT
+            port: process.env.CLOUD_DB_PORT,
+            logging: (...msg) => console.log(`DB: ${msg[0]}`)
         }
     );
 } else {
