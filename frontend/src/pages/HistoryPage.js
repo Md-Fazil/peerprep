@@ -15,6 +15,7 @@ import {
     TableBody,
     Paper,
     CircularProgress,
+    Stack
 } from "@mui/material";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -141,10 +142,11 @@ function HistoryPage() {
     }
 
     return (
-        <Box padding="10%">
+        <Stack justifyContent="center" alignItems="center" padding="10%">
             <Typography variant="h2" component="div" align="center">
                 History
             </Typography>
+            <br></br>
             <br></br>
             <Typography variant="h5" component="div" align="center">
                 History is empty :(
@@ -153,7 +155,7 @@ function HistoryPage() {
                 Start completing some questions!
             </Typography>
             <Button
-                style={{ marginTop: "5%", fontWeight: "bold", margin: '0 auto', display: "flex" }}
+                style={{ marginTop: "2%", fontWeight: "bold" }}
                 variant="contained"
                 color="success"
                 size="large"
@@ -161,7 +163,7 @@ function HistoryPage() {
             >
                 Return back to Home
             </Button>
-        </Box>
+        </Stack>
     );
 }
 
