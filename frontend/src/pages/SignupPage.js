@@ -38,7 +38,6 @@ function SignupPage() {
                 setIsSignupSuccess(true);
             }
         } catch (err) {
-            console.log(err.response.data)
             setErrorDialog(err.response.data.message);
         }
     };

@@ -10,12 +10,10 @@ if (process.env.REACT_APP_NODE_ENV === "production") {
 
 export async function addQuestionToHistory(user, question) {
     const res = await axios.post(HISTORY_SERVICE_ENDPOINT + `/${user}`, question);
-    console.log(res)
     return res;
 }
 
 export async function getUserQuestionHistory(user) {
     const res = await axios.get(HISTORY_SERVICE_ENDPOINT + `/${user}`);
-    console.log(res.data)
     return res.data.questionHistory;
 }

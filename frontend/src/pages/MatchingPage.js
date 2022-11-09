@@ -49,13 +49,11 @@ const MatchingPage = () => {
     useEffect(() => {
         if (user && !matchState.isPending && !matchState.isSuccess) {
             if (user.difficultyLevel !== null) {
-                console.log("find match via difficulty...")
                 findMatch({
                     username: user.username,
                     filterKey: user.difficultyLevel,
                 });
             } else if (user.topic !== null) {
-                console.log("find match via topic...")
                 findMatch({
                     username: user.username,
                     filterKey: user.topic,

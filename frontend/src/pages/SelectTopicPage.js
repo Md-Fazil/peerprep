@@ -11,7 +11,6 @@ const SelectTopicPage = () => {
     const navigate = useNavigate();
 
     const clickTopic = (e) => {
-        console.log(e.currentTarget.textContent);
         setUser((prevState) => {
             return {
                 ...prevState,
@@ -32,7 +31,6 @@ const SelectTopicPage = () => {
             setUser(JSON.parse(localStorage.getItem("user")));
         }
         fetchTopics();
-        console.log("fetching topics...");
     }, []);
 
     async function fetchTopics() {
