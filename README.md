@@ -8,8 +8,24 @@
 5. Run User Service using `npm run dev`.
 
 ## Frontend
-1. Install npm packages using `npm i`.
-2. Run Frontend using `npm start`.
+1. Create `.env` file 
+```
+REACT_APP_CHAT_SERVICE_CLOUD_ENDPOINT = *REDACTED*
+REACT_APP_USER_SERVICE_CLOUD_ENDPOINT = *REDACTED*
+REACT_APP_MATCHING_SERVICE_CLOUD_ENDPOINT = *REDACTED*
+REACT_APP_QUESTION_SERVICE_CLOUD_ENDPOINT = *REDACTED*
+REACT_APP_COLLABORATION_SERVICE_CLOUD_ENDPOINT = *REDACTED*
+REACT_APP_HISTORY_SERVICE_CLOUD_ENDPOINT = *REDACTED*
+
+REACT_APP_CHAT_SERVICE_LOCAL_ENDPOINT = "http://localhost:8080" 
+REACT_APP_USER_SERVICE_LOCAL_ENDPOINT = "http://localhost:8000/api/user" 
+REACT_APP_MATCHING_SERVICE_LOCAL_ENDPOINT = "http://localhost:8001" 
+REACT_APP_QUESTION_SERVICE_LOCAL_ENDPOINT = "http://localhost:8008" 
+REACT_APP_COLLABORATION_SERVICE_LOCAL_ENDPOINT = "https://collaborationservices.click"
+REACT_APP_HISTORY_SERVICE_LOCAL_ENDPOINT = "http://localhost:8003/api/history/"
+```
+2. Install npm packages using `npm i`.
+3. Run Frontend using `npm start`, which it will use all the `LOCAL` variables
 
 ## History Service
 
