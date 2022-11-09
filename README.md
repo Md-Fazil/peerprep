@@ -1,4 +1,5 @@
 # CS3219-AY22-23-Project
+Please nagivate to the specific service directory and run the corresponding commands.
 
 ## User Service
 1. Rename `.env.sample` file to `.env`.
@@ -40,3 +41,52 @@ REACT_APP_HISTORY_SERVICE_LOCAL_ENDPOINT = "http://localhost:8003/api/history"
 2. Enter the DB URL created as `DB_CLOUD_URL` in the `.env` file.
 3. Install npm packages using `npm i`.
 4. Run User Service using `npm start`.
+
+
+## Matching Service
+
+* TO RUN LOCALLY
+
+1. Install npm packages using `npm i`.
+2. Run History Service using `npm start`.
+- Please note that an `SQLite` database would be created.
+
+* TO RUN WITH CLOUD DB
+
+1. Create a Cloud instance of `PostgreSQL`.
+2. Create `.env` file and populate following variables:
+```
+PORT
+CLOUD_DB_URL
+CLOUD_DB_USERNAME
+CLOUD_DB_PASSWORD
+CLOUD_DB_PORT
+```
+3. Install npm packages using `npm i`.
+4. Run User Service using `npm start`.
+
+
+## Collaboration Service
+
+* TO RUN LOCALLY
+1. Start a Local Redis server which listens to port`6379`.
+2. Install npm packages using `npm i`.
+3. Run History Service using `npm start`.
+
+* TO RUN WITH CLOUD DB
+
+1. Create a Cloud instance of Redis.
+2. Create `.env` file and populate following variables:
+```
+CLOUD_REDIS_URL
+CLOUD_REDIS_PORT
+CLOUD_REDIS_USERNAME
+CLOUD_REDIS_PASSWORD
+```
+3. Install npm packages using `npm i`.
+4. Run User Service using `npm start`.
+
+
+## Chat Service
+1. Install npm packages using `npm i`.
+3. Run History Service using `npm start`.
