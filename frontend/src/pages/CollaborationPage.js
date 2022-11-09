@@ -46,7 +46,6 @@ function CollaborationPage() {
 
         // get question from QuestionService
         fetchQuestion();
-        console.log("question in collab:", question);
 
         // back-button
         window.history.pushState(null, null, window.location.pathname);
