@@ -8,7 +8,6 @@ const SelectDiffcultyPage = () => {
     const navigate = useNavigate();
 
     const clickDifficulty = (e) => {
-        console.log(e.target.id);
         setUser((prevState) => {
             return {
                 ...prevState,
