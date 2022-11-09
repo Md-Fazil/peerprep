@@ -4,11 +4,14 @@ PeerPrep: https://peerprep.vercel.app
 Please nagivate to the specific service directory and run the corresponding commands.
 
 ## User Service
-1. Create `.env` file. 
-2. Create a Cloud DB URL using Mongo Atlas.
-3. Enter the DB URL created as `DB_CLOUD_URI` in `.env` file.
-4. Install npm packages using `npm i`.
-5. Run User Service using `npm run dev`.
+* TO RUN LOCALLY
+1. Create a `.env` and populate the following variable:
+``
+DB_LOCAL_URI
+```
+2. Create a Redis server which listens to port `6380`
+2. Install npm packages using `npm i`.
+3. Run History Service using `npm start`.
 
 ## Frontend
 1. Create `.env` file 
