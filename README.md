@@ -56,7 +56,6 @@ REACT_APP_HISTORY_SERVICE_LOCAL_ENDPOINT = "http://localhost:8003/api/history"
 1. Create a Cloud instance of `PostgreSQL`.
 2. Create `.env` file and populate following variables:
 ```
-PORT
 CLOUD_DB_URL
 CLOUD_DB_USERNAME
 CLOUD_DB_PASSWORD
