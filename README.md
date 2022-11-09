@@ -6,7 +6,7 @@ Please nagivate to the specific service directory and run the corresponding comm
 ## User Service
 * TO RUN LOCALLY
 1. Create a `.env` and populate the following variable:
-``
+```
 DB_LOCAL_URI
 ```
 2. Create a Redis server which listens to port `6380`
@@ -92,5 +92,14 @@ CLOUD_REDIS_PASSWORD
 
 
 ## Chat Service
+1. Install npm packages using `npm i`.
+3. Run History Service using `npm start`.
+
+
+## Chat Service
+1. Install npm packages using `npm i`.
+3. Run History Service using `npm start`.
+
+## Question Service
 1. Install npm packages using `npm i`.
 3. Run History Service using `npm start`.
