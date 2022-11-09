@@ -1,19 +1,18 @@
 # CS3219-AY22-23-Project
 PeerPrep: https://peerprep.vercel.app
 
-Please nagivate to the specific service directory and run the corresponding commands.
-
 ## User Service
-* TO RUN LOCALLY
+To run the service locally:
 1. Create a `.env` and populate the following variable:
 ```
-DB_LOCAL_URI
+DB_LOCAL_URI=
 ```
 2. Create a Redis server which listens to port `6380`
-2. Install npm packages using `npm i`.
-3. Run History Service using `npm start`.
+3. Install npm packages using `npm i`.
+4. Run History Service using `npm start`.
 
 ## Frontend
+To run the service locally:
 1. Create `.env` file 
 ```
 REACT_APP_CHAT_SERVICE_CLOUD_ENDPOINT = *REDACTED*
@@ -35,7 +34,7 @@ REACT_APP_HISTORY_SERVICE_LOCAL_ENDPOINT = "http://localhost:8003/api/history"
 
 ## History Service
 
-* TO RUN LOCALLY
+To run the service locally:
 1. Create a `.env` file with a line `LOCAL_DB_URL="mongodb://localhost:27017/questionsDb"` in the `history-service` folder.
 2. Install npm packages using `npm i`.
 3. Run History Service using `npm start`.
@@ -43,30 +42,31 @@ REACT_APP_HISTORY_SERVICE_LOCAL_ENDPOINT = "http://localhost:8003/api/history"
 
 ## Matching Service
 
-* TO RUN LOCALLY
-
+To run the service locally:
 1. Install npm packages using `npm i`.
 2. Run History Service using `npm start`.
 - Please note that an `SQLite` database would be created.
 
 ## Collaboration Service
 
-* TO RUN LOCALLY
+To run the services locally:
 1. Start a Local Redis server which listens to port`6379`.
 2. Install npm packages using `npm i`.
-3. Run History Service using `npm start`.
+3. Run Collaboration Service using `npm start`.
 
 
 ## Chat Service
+To run the services locally:
 1. Install npm packages using `npm i`.
-3. Run History Service using `npm start`.
+2. Run Chat Service using `npm start`.
 
 
 ## Question Service
+To run the services locally:
 1 Create local Redis server that listens to port `6379`
 2. Create `.env` file and populate following variables:
 ```
 LOCAL_DB_URL
 ```
 3. Install npm packages using `npm i`.
-4. Run History Service using `npm start`.
+4. Run Question Service using `npm start`.
