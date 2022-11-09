@@ -1,8 +1,10 @@
 # CS3219-AY22-23-Project
+PeerPrep: https://peerprep.vercel.app
+
 Please nagivate to the specific service directory and run the corresponding commands.
 
 ## User Service
-1. Create `.env` file.
+1. Create `.env` file. 
 2. Create a Cloud DB URL using Mongo Atlas.
 3. Enter the DB URL created as `DB_CLOUD_URI` in `.env` file.
 4. Install npm packages using `npm i`.
