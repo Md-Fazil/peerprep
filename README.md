@@ -101,5 +101,10 @@ CLOUD_REDIS_PASSWORD
 3. Run History Service using `npm start`.
 
 ## Question Service
-1. Install npm packages using `npm i`.
-3. Run History Service using `npm start`.
+1 Create local Redis server that listens to port `6379`
+2. Create `.env` file and populate following variables:
+```
+LOCAL_DB_URL
+```
+3. Install npm packages using `npm i`.
+4. Run History Service using `npm start`.
