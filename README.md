@@ -1,5 +1,5 @@
-# CS3219-AY22-23-Project
-PeerPrep: https://peerprep.vercel.app
+# Peerprep Project
+Link: https://peerprep.vercel.app
 
 ## User Service
 To run the service locally:
