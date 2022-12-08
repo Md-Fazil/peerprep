@@ -15,7 +15,7 @@ The application offers the following core functionalities:
 <a href="https://ibb.co/3ys0nzx"><img src="https://i.ibb.co/pvP3SyH/Screenshot-2022-12-08-at-11-42-14-AM.png" alt="Screenshot-2022-12-08-at-11-42-14-AM" border="0"></a><br /><a target='_blank'>Matching Page with countdown timer</a><br />
 </p>
 
-3. Collaboration page for matched users with randomly generated question based on match criteria and collaboration via shared editor and chat. 
+3. Collaboration page for matched users with randomly generated question based on match criteria and collaboration via shared editor and chat 
 <p align="center"> 
 <a href="https://ibb.co/zRDmtyJ"><img src="https://i.ibb.co/mqgRPL8/Screenshot-2022-12-08-at-11-43-28-AM.png" alt="Screenshot-2022-12-08-at-11-43-28-AM" border="0"></a><br /><a target='_blank'>Collaboration Page </a><br />
 </p>
