@@ -1,6 +1,6 @@
 # Peerprep Project
 PeerPrep is a web application where students can help each other in technical interviews by attempting LeetCode-style algorithmic questions. They can play interviewer-interviewee roles and take turns solving a question while collaborating using a live Editor and Chat.
-<a href="https://ibb.co/x8nDpTT"><img src="https://i.ibb.co/3Yx7DZZ/Screenshot-2022-12-08-at-11-44-33-AM.png" alt="Screenshot-2022-12-08-at-11-44-33-AM" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>online picture hosting</a><br />
+<a align="center" href="https://ibb.co/x8nDpTT"><img src="https://i.ibb.co/3Yx7DZZ/Screenshot-2022-12-08-at-11-44-33-AM.png" alt="Screenshot-2022-12-08-at-11-44-33-AM" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>online picture hosting</a><br />
 
 # Developer Guide
 ## User Service
