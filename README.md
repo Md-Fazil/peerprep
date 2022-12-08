@@ -1,6 +1,7 @@
 # Peerprep Project
-Link: https://peerprep.vercel.app
-
+PeerPrep is a web application where students can help each other in technical interviews by attempting LeetCode-style algorithmic questions. They can play interviewer-interviewee roles and take turns solving a question while collaborating using a live Editor and Chat.
+![alt text](http://ibb.co/x8nDpTT)
+# Developer Guide
 ## User Service
 To run the service locally:
 1. Create a `.env` and populate the following variable:
