@@ -5,13 +5,16 @@ The application offers the following core functionalities:
 1. Authentication
 <p align="center"> 
 <a  href="https://ibb.co/x8nDpTT"><img src="https://i.ibb.co/3Yx7DZZ/Screenshot-2022-12-08-at-11-44-33-AM.png" alt="Screenshot-2022-12-08-at-11-44-33-AM" border="0"></a><br /><a target='_blank'>Login Page</a><br/>
+ <div></div>
 <a href="https://ibb.co/896dVrr"><img src="https://i.ibb.co/RczBW33/Screenshot-2022-12-08-at-11-41-32-AM.png" alt="Screenshot-2022-12-08-at-11-41-32-AM" border="0"></a><br /><a target='_blank'>Landing Page</a><br />  
 </p>
 
 2. Matching of users via difficulty and topic
 <p align="center"> 
 <a href="https://ibb.co/J5CvFj7"><img src="https://i.ibb.co/18brJGq/Screenshot-2022-12-08-at-11-41-42-AM.png" alt="Screenshot-2022-12-08-at-11-41-42-AM" border="0"></a><br /><a target='_blank' >Matching via difficulty</a><br />
+<div></div>
 <a href="https://ibb.co/RQH3c67"><img src="https://i.ibb.co/2cKvdM5/Screenshot-2022-12-08-at-11-41-59-AM.png" alt="Screenshot-2022-12-08-at-11-41-59-AM" border="0"></a><br /><a target='_blank'>Matching via topic</a><br />
+<div></div>
 <a href="https://ibb.co/3ys0nzx"><img src="https://i.ibb.co/pvP3SyH/Screenshot-2022-12-08-at-11-42-14-AM.png" alt="Screenshot-2022-12-08-at-11-42-14-AM" border="0"></a><br /><a target='_blank'>Matching Page with countdown timer</a><br />
 </p>
 
